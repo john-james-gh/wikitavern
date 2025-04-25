@@ -24,8 +24,8 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
       typescript:
-        specifier: 5.8.3
-        version: 5.8.3
+        specifier: 5.7.3
+        version: 5.7.3
 
   apps/cms:
     dependencies:
@@ -156,8 +156,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^5.7.3
+        version: 5.7.3
 
   packages/eslint-config:
     devDependencies:
@@ -7054,11 +7054,6 @@ packages:
 
   typescript@5.7.3:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -15450,8 +15445,6 @@ snapshots:
       - supports-color
 
   typescript@5.7.3: {}
-
-  typescript@5.8.3: {}
 
   uglify-js@3.19.3:
     optional: true
