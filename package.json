@@ -5,13 +5,19 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\" && sort-package-json",
+    "lint": "turbo lint"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "printWidth": 110,
+    "semi": false
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "prettier": "^3.5.1",
+    "sort-package-json": "^3.0.0",
     "turbo": "^2.4.2",
     "typescript": "5.7.3"
   },
