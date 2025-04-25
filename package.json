@@ -5,7 +5,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\" && sort-package-json",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\" && sort-package-json",
     "lint": "turbo lint"
   },
   "prettier": {
