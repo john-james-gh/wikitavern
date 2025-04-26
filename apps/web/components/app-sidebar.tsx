@@ -55,7 +55,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {aboutItems.map((item) => (
                 <SidebarMenuItem key={item.label}>
-                  <SidebarMenuButton asChild data-state={pathname === item.url ? "active" : undefined}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
                     <Link href={item.url}>
                       <span className="mr-2 text-lg">{item.emoji}</span>
                       <span>{item.label}</span>
