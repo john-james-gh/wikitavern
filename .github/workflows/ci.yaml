@@ -34,4 +34,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm build
+        run: pnpm turbo build
+
+      - name: Build with Turbo
+        run: pnpm turbo build-storybook
