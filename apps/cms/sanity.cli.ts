@@ -1,6 +1,7 @@
 import {defineCliConfig} from "sanity/cli"
 
 export default defineCliConfig({
+  studioHost: "wikitavern",
   api: {
     projectId: "j9ou61ca",
     dataset: "production",
