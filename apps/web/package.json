@@ -13,11 +13,14 @@
     "typegen": "sanity typegen generate"
   },
   "dependencies": {
+    "@portabletext/block-tools": "^1.1.21",
     "@sanity/client": "^6.29.0",
     "@sanity/image-url": "^1.1.0",
+    "@sanity/schema": "^3.86.1",
     "@workspace/ui": "workspace:*",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
+    "micromark": "^4.0.2",
     "next": "^15.2.3",
     "next-sanity": "^9.10.2",
     "next-themes": "^0.4.4",

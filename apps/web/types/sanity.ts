@@ -196,6 +196,7 @@ export type Page = {
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: "category"
   }
+  requestedCategory?: string
   tags?: Array<{
     _ref: string
     _type: "reference"
@@ -203,6 +204,7 @@ export type Page = {
     _key: string
     [internalGroqTypeReferenceTo]?: "tag"
   }>
+  requestedTags?: Array<string>
   publishedAt?: string
   updatedAt?: string
   featured?: boolean

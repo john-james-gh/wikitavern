@@ -2,6 +2,9 @@
 
 import {writeClient} from "@/lib/sanity/client"
 import {z} from "zod"
+import {micromark} from "micromark"
+import {htmlToBlocks} from "@portabletext/block-tools"
+import {blockContentType} from "@/lib/sanity/block-content"
 
 export const ContributionSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
@@ -18,6 +21,11 @@ export type ContributionInput = z.infer<typeof ContributionSchema>
 export interface FormActionResponse {
   message: string
   errors?: Record<string, string>
+}
+
+function markdownToBlocks(md: string) {
+  const html = micromark(md)
+  return htmlToBlocks(html, blockContentType)
 }
 
 export async function createPage(
@@ -38,18 +46,14 @@ export async function createPage(
 
   const {slug, title, content, category, requestedCategory, tags, requestedTags} = parseResult.data
 
+  const blocks = markdownToBlocks(content)
+
   try {
     await writeClient.create({
       _type: "page",
       title,
       slug: {current: slug},
-      content: [
-        {
-          _type: "block",
-          style: "normal",
-          children: [{_type: "span", text: content}],
-        },
-      ],
+      content: blocks,
       category: category ? {_type: "reference", _ref: category} : undefined,
       requestedCategory: requestedCategory || undefined,
       tags: tags?.map((tagId) => ({_type: "reference", _ref: tagId})) || [],
