@@ -15,9 +15,9 @@ export default async function Page() {
     <section className="p-2">
       <h1 className="text-2xl font-bold">{data.title}</h1>
       {data?.content && (
-        <div>
+        <article className="prose dark:prose-invert">
           <PortableText value={data.content} components={components} />
-        </div>
+        </article>
       )}
     </section>
   )
