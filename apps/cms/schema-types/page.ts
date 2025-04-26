@@ -47,6 +47,12 @@ export const page = defineType({
       type: "datetime",
       title: "Last Updated",
     }),
+    defineField({
+      name: "featured",
+      type: "boolean",
+      title: "Featured Page",
+      description: "Include this page in the Featured Wikis section on the homepage.",
+    }),
   ],
   preview: {
     select: {

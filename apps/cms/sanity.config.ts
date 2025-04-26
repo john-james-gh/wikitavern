@@ -5,7 +5,7 @@ import {schemaTypes} from "./schema-types"
 
 export default defineConfig({
   name: "default",
-  title: "wiki",
+  title: "Wikitavern",
 
   projectId: "j9ou61ca",
   dataset: "production",
