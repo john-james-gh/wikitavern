@@ -1,20 +1,20 @@
 {
   "name": "@workspace/cms",
-  "private": true,
   "version": "1.0.0",
-  "main": "package.json",
-  "license": "UNLICENSED",
-  "scripts": {
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
-    "lint": "eslint . --max-warnings 0"
-  },
+  "private": true,
   "keywords": [
     "sanity"
   ],
+  "license": "UNLICENSED",
+  "main": "package.json",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "dev": "sanity dev",
+    "lint": "eslint . --max-warnings 0",
+    "start": "sanity start"
+  },
   "dependencies": {
     "@sanity/vision": "^3.86.1",
     "react": "^19.0.0",
