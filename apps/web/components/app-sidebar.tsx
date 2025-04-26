@@ -59,7 +59,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.label}>
                   <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
                     <Link href={item.url}>
-                      <span className="mr-2 text-lg">{item.emoji}</span>
+                      <span className="mr-2">{item.emoji}</span>
                       <span>{item.label}</span>
                     </Link>
                   </SidebarMenuButton>
