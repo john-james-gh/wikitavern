@@ -1,4 +1,4 @@
 {
-  "cSpell.words": ["turbopack"],
+  "cSpell.words": ["autodocs", "turbopack"],
   "github-actions.workflows.pinned.workflows": [".github/workflows/ci.yaml"]
 }
