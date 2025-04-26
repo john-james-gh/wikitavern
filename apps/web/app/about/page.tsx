@@ -12,13 +12,9 @@ export default async function Page() {
   }
 
   return (
-    <section className="p-2">
-      <h1 className="text-2xl font-bold">{data.title}</h1>
-      {data?.content && (
-        <article className="prose dark:prose-invert">
-          <PortableText value={data.content} components={components} />
-        </article>
-      )}
+    <section className="px-2 py-4 prose dark:prose-invert">
+      <h1>{data.title}</h1>
+      {data?.content && <PortableText value={data.content} components={components} />}
     </section>
   )
 }
