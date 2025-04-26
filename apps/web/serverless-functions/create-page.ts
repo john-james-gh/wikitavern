@@ -4,7 +4,7 @@ import {writeClient} from "@/lib/sanity/client"
 import {z} from "zod"
 import {micromark} from "micromark"
 import {htmlToBlocks} from "@portabletext/block-tools"
-import {blockContentType} from "@/lib/sanity/block-content"
+import {blockContentType} from "@/lib/sanity/block-content-type"
 
 export const ContributionSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
