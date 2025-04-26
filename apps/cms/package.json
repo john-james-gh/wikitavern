@@ -14,7 +14,7 @@
     "dev": "sanity dev",
     "lint": "eslint . --max-warnings 0",
     "start": "sanity start",
-    "typegen": "sanity schema extract"
+    "typegen": "sanity schema extract --path ../web/schema.json"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.0",
