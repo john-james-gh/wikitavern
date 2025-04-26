@@ -205,6 +205,9 @@ export type Page = {
   }>
   publishedAt?: string
   updatedAt?: string
+  featured?: boolean
+  status?: "draft" | "pending" | "published"
+  submittedAt?: string
 }
 
 export type Category = {
@@ -284,6 +287,22 @@ export type PAGE_QUERYResult = {
 export type PAGES_SLUGS_QUERYResult = Array<{
   slug: string | null
 }>
+// Variable: FEATURED_PAGES_QUERY
+// Query: *[  _type == "page"   && featured == true ] | order(publishedAt desc)[0...6]{  _id,  title,  slug,  updatedAt}
+export type FEATURED_PAGES_QUERYResult = Array<{
+  _id: string
+  title: string | null
+  slug: Slug | null
+  updatedAt: string | null
+}>
+// Variable: RECENTLY_UPDATED_PAGES_QUERY
+// Query: *[  _type == "page"] | order(updatedAt desc)[0...6]{  _id,  title,  slug,  updatedAt}
+export type RECENTLY_UPDATED_PAGES_QUERYResult = Array<{
+  _id: string
+  title: string | null
+  slug: Slug | null
+  updatedAt: string | null
+}>
 
 // Query TypeMap
 import "@sanity/client"
@@ -291,5 +310,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "page" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  content,\n  category->{_id, title, slug},\n  tags[]->{_id, title, slug},\n  publishedAt,\n  updatedAt\n}': PAGE_QUERYResult
     '*[_type == "page" && defined(slug.current)]{\n  "slug": slug.current\n}': PAGES_SLUGS_QUERYResult
+    '*[\n  _type == "page" \n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
+    '*[\n  _type == "page"\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
   }
 }

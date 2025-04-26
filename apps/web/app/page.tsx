@@ -16,16 +16,13 @@ export default async function Page() {
 
       <h2>🚀 Featured Wikis</h2>
       {featuredPages?.length ? (
-        <>
-          <h2>🚀 Featured Wikis</h2>
-          <ul>
-            {featuredPages.map((page: any) => (
-              <li key={page._id}>
-                <Link href={`/${page.slug.current}`}>{page.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </>
+        <ul>
+          {featuredPages.map((page: any) => (
+            <li key={page._id}>
+              <Link href={`/${page.slug.current}`}>{page.title}</Link>
+            </li>
+          ))}
+        </ul>
       ) : (
         <p className="text-muted-foreground">No featured wikis yet — check back soon!</p>
       )}

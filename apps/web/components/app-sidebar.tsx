@@ -25,6 +25,7 @@ const exploreItems = [
 const aboutItems = [
   {emoji: "ℹ️", label: "About", url: "/about"},
   {emoji: "❤️", label: "Donate", url: "/donate"},
+  {emoji: "🛠️", label: "Contribution Guide", url: "/contribute"},
 ]
 
 export function AppSidebar() {

@@ -4,7 +4,7 @@ import {DocumentTextIcon} from "@sanity/icons"
 export const page = defineType({
   name: "page",
   type: "document",
-  title: "Wiki Page",
+  title: "Page",
   icon: DocumentTextIcon,
   fields: [
     defineField({
@@ -52,6 +52,20 @@ export const page = defineType({
       type: "boolean",
       title: "Featured Page",
       description: "Include this page in the Featured Wikis section on the homepage.",
+    }),
+    defineField({
+      name: "status",
+      type: "string",
+      title: "Status",
+      options: {
+        list: ["draft", "pending", "published"],
+      },
+      initialValue: "pending",
+    }),
+    defineField({
+      name: "submittedAt",
+      type: "datetime",
+      title: "Submitted At",
     }),
   ],
   preview: {
