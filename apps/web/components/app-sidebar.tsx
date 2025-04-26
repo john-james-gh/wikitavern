@@ -4,6 +4,7 @@ import {usePathname} from "next/navigation"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -12,6 +13,7 @@ import {
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar"
 import Link from "next/link"
+import {ThemeSwitch} from "./theme-switch"
 
 const exploreItems = [
   {emoji: "🏠", label: "Home", url: "/"},
@@ -67,6 +69,14 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <ThemeSwitch />
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   )
 }
