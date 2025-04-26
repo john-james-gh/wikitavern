@@ -31,11 +31,11 @@ jobs:
           node-version: 22
           cache: "pnpm"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install
 
-      - name: Build
+      - name: Build Application
         run: pnpm turbo build
 
-      - name: Build with Turbo
+      - name: Build Storybook
         run: pnpm turbo build-storybook
