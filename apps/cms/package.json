@@ -13,9 +13,11 @@
     "deploy-graphql": "sanity graphql deploy",
     "dev": "sanity dev",
     "lint": "eslint . --max-warnings 0",
-    "start": "sanity start"
+    "start": "sanity start",
+    "extract": "sanity schema extract"
   },
   "dependencies": {
+    "@sanity/icons": "^3.7.0",
     "@sanity/vision": "^3.86.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
