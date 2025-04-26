@@ -1,5 +1,6 @@
-import {Calendar, Home, Inbox, Search, Settings} from "lucide-react"
+"use client"
 
+import {usePathname} from "next/navigation"
 import {
   Sidebar,
   SidebarContent,
@@ -12,49 +13,52 @@ import {
 } from "@workspace/ui/components/sidebar"
 import Link from "next/link"
 
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+const exploreItems = [
+  {emoji: "🏠", label: "Home", url: "/"},
+  {emoji: "📄", label: "All Wikis", url: "/wiki"},
+  {emoji: "📂", label: "Categories", url: "/category"},
+  {emoji: "🏷️", label: "Tags", url: "/tag"},
+]
+
+const aboutItems = [
+  {emoji: "ℹ️", label: "About", url: "/about"},
+  {emoji: "❤️", label: "Donate", url: "/donate"},
 ]
 
 export function AppSidebar() {
+  const pathname = usePathname()
+
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Explore</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+              {exploreItems.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
                     <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                      <span className="mr-2">{item.emoji}</span>
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>About</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {aboutItems.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  <SidebarMenuButton asChild data-state={pathname === item.url ? "active" : undefined}>
+                    <Link href={item.url}>
+                      <span className="mr-2 text-lg">{item.emoji}</span>
+                      <span>{item.label}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
