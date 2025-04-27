@@ -30,6 +30,7 @@
       "cache": false
     },
     "typegen": {
+      "inputs": ["src/schema-types/**/*.ts"],
       "dependsOn": ["^typegen"],
       "outputs": ["./schema.json", "./types/sanity.ts"]
     }
