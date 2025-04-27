@@ -1,15 +1,18 @@
 {
   "name": "@workspace/cms-schema",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "check-types": "tsc --noEmit",
     "typegen": "sanity schema extract"
   },
   "exports": {
-    "./*": {
-      "types": "./src/*.ts",
-      "default": "./dist/*.js"
+    "./schema-types": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./schema.json": "./schema.json"
   },

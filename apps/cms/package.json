@@ -13,8 +13,7 @@
     "deploy-graphql": "sanity graphql deploy",
     "dev": "sanity dev",
     "lint": "eslint . --max-warnings 0",
-    "start": "sanity start",
-    "typegen": "sanity schema extract --path ../web/schema.json"
+    "start": "sanity start"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.0",
@@ -22,13 +21,15 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.86.1",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "@workspace/cms-schema": "workspace:*"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.9.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "@workspace/typescript-config": "workspace:*"
   }
 }

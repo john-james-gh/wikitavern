@@ -35,6 +35,9 @@ importers:
       '@sanity/vision':
         specifier: ^3.86.1
         version: 3.86.1(@babel/runtime@7.27.0)(@codemirror/lint@6.8.5)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.17(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@workspace/cms-schema':
+        specifier: workspace:*
+        version: link:../../packages/cms-schema
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -57,6 +60,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.0.4(@types/react@19.0.10)
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       eslint:
         specifier: ^9.9.0
         version: 9.25.1(jiti@2.4.2)

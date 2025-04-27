@@ -1,7 +1,8 @@
 import {defineConfig} from "sanity"
+import type {SchemaTypeDefinition} from "sanity"
 import {structureTool} from "sanity/structure"
 import {visionTool} from "@sanity/vision"
-import {schemaTypes} from "./schema-types"
+import {schemaTypes} from "@workspace/cms-schema/schema-types"
 
 export default defineConfig({
   name: "default",
@@ -11,8 +12,7 @@ export default defineConfig({
   dataset: "production",
 
   plugins: [structureTool(), visionTool()],
-
   schema: {
-    types: schemaTypes,
+    types: schemaTypes as SchemaTypeDefinition[],
   },
 })
