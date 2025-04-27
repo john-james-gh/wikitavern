@@ -1,7 +1,6 @@
 {
   "name": "@workspace/cms-schema",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",
