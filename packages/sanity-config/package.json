@@ -1,6 +1,5 @@
 {
   "name": "@workspace/sanity-config",
-  "version": "0.0.0",
   "type": "module",
   "exports": {
     "./base": "./base.js"

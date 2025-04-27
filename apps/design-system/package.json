@@ -1,7 +1,5 @@
 {
   "name": "@workspace/design-system",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
     "build": "next build",
     "build-storybook": "storybook build",
@@ -28,7 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@workspace/eslint-config": "workspace:^",
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "storybook": "^8.6.12",
     "typescript": "^5"
