@@ -36,8 +36,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build Application
-        run: pnpm turbo build
-
-      - name: Build Storybook
-        run: pnpm turbo build-storybook
+      - name: Test Application
+        run: pnpm turbo build build-storybook lint typecheck
