@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "rm -rf dist && tsc",
-    "check-types": "tsc --noEmit",
     "typegen": "pnpm build && sanity schema extract",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit"
   },
   "exports": {
     "./schema-types": {
