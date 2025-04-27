@@ -1,5 +1,5 @@
 import {defineConfig} from "sanity"
-import {schemaTypes} from "./src/index.js"
+import {schemaTypes} from "./dist/index.js"
 
 export default defineConfig({
   name: "default",

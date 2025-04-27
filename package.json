@@ -7,8 +7,7 @@
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\" && pnpm --recursive exec sort-package-json",
     "lint": "turbo lint",
-    "clean-modules": "pnpm --recursive exec rm -rf node_modules",
-    "typegen": "pnpm --filter @workspace/cms-schema typegen && pnpm --filter @workspace/web typegen"
+    "clean-modules": "pnpm --recursive exec rm -rf node_modules"
   },
   "prettier": {
     "bracketSpacing": false,

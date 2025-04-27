@@ -7,7 +7,7 @@
     "dev": "tsc --watch",
     "build": "rm -rf dist && tsc",
     "check-types": "tsc --noEmit",
-    "typegen": "sanity schema extract"
+    "typegen": "pnpm build && sanity schema extract"
   },
   "exports": {
     "./schema-types": {
