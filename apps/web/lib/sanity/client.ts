@@ -1,18 +1,18 @@
 import {createClient} from "next-sanity"
 
-import {apiVersion, dataset, projectId} from "./env"
+import {SANITY_PROJECT_ID, SANITY_DATASET, SANITY_API_VERSION, SANITY_API_TOKEN} from "@/config/environment"
 
 export const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
+  projectId: SANITY_PROJECT_ID,
+  dataset: SANITY_DATASET,
+  apiVersion: SANITY_API_VERSION,
   useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
 })
 
 export const writeClient = createClient({
-  projectId,
-  dataset,
-  apiVersion,
+  projectId: SANITY_PROJECT_ID,
+  dataset: SANITY_DATASET,
+  apiVersion: SANITY_API_VERSION,
   useCdn: false, // Always false for mutations
-  token: process.env.SANITY_API_TOKEN, // Needed for write access!
+  token: SANITY_API_TOKEN, // Needed for write access!
 })
