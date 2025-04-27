@@ -1,14 +1,6 @@
 {
   "name": "@workspace/cms-schema",
-  "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "tsc --watch",
-    "build": "rm -rf dist && tsc",
-    "typegen": "pnpm build && sanity schema extract",
-    "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit"
-  },
   "exports": {
     "./schema-types": {
       "import": "./dist/index.js",
@@ -17,15 +9,22 @@
     },
     "./schema.json": "./schema.json"
   },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "typegen": "pnpm build && sanity schema extract"
+  },
   "dependencies": {
     "@sanity/icons": "^3.7.0",
-    "sanity": "^3.86.1",
-    "@workspace/sanity-config": "workspace:*"
+    "@workspace/sanity-config": "workspace:*",
+    "sanity": "^3.86.1"
   },
   "devDependencies": {
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "typescript": "latest",
     "eslint": "^9.25.1",
-    "@workspace/eslint-config": "workspace:*"
+    "typescript": "latest"
   }
 }
