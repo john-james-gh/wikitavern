@@ -1,0 +1,24 @@
+{
+  "name": "@workspace/cms-schema",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "typegen": "sanity schema extract"
+  },
+  "exports": {
+    "./*": {
+      "types": "./src/*.ts",
+      "default": "./dist/*.js"
+    },
+    "./schema.json": "./schema.json"
+  },
+  "dependencies": {
+    "@sanity/icons": "^3.7.0",
+    "sanity": "^3.86.1"
+  },
+  "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
+    "typescript": "latest"
+  }
+}

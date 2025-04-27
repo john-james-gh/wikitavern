@@ -18,6 +18,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/schema": "^3.86.1",
     "@workspace/ui": "workspace:*",
+    "@workspace/cms-schema": "workspace:*",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
     "micromark": "^4.0.2",
