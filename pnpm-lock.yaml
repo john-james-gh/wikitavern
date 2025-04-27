@@ -38,6 +38,9 @@ importers:
       '@workspace/cms-schema':
         specifier: workspace:*
         version: link:../../packages/cms-schema
+      '@workspace/sanity-config':
+        specifier: workspace:*
+        version: link:../../packages/sanity-config
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -203,6 +206,9 @@ importers:
       '@sanity/icons':
         specifier: ^3.7.0
         version: 3.7.0(react@19.0.0)
+      '@workspace/sanity-config':
+        specifier: workspace:*
+        version: link:../sanity-config
       sanity:
         specifier: ^3.86.1
         version: 3.86.1(@emotion/is-prop-valid@1.2.2)(@types/node@20.17.19)(@types/react@19.0.10)(immer@10.1.1)(jiti@2.4.2)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.17(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(yaml@2.7.1)
@@ -255,6 +261,12 @@ importers:
       typescript-eslint:
         specifier: ^8.24.1
         version: 8.24.1(eslint@9.25.1(jiti@2.4.2))(typescript@5.7.3)
+
+  packages/sanity-config:
+    dependencies:
+      sanity:
+        specifier: ^3.86.1
+        version: 3.86.1(@emotion/is-prop-valid@1.2.2)(@types/node@20.17.19)(@types/react@19.0.10)(immer@10.1.1)(jiti@2.4.2)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.17(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(yaml@2.7.1)
 
   packages/typescript-config: {}
 
