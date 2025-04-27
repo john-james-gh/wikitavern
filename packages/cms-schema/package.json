@@ -1,5 +1,6 @@
 {
   "name": "@workspace/cms-schema",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",
@@ -10,8 +11,9 @@
   },
   "exports": {
     "./schema-types": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./schema.json": "./schema.json"
   },

@@ -11,7 +11,7 @@
       "dependsOn": ["^lint"]
     },
     "typecheck": {
-      "dependsOn": ["^typecheck", "build"]
+      "dependsOn": ["^typecheck"]
     },
     "dev": {
       "cache": false,
@@ -26,7 +26,7 @@
       "outputs": ["storybook-static/**"]
     },
     "deploy": {
-      "dependsOn": [],
+      "dependsOn": ["^build"],
       "cache": false
     },
     "typegen": {
