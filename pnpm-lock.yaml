@@ -210,9 +210,15 @@ importers:
         specifier: ^3.86.1
         version: 3.86.1(@emotion/is-prop-valid@1.2.2)(@types/node@20.17.19)(@types/react@19.0.10)(immer@10.1.1)(jiti@2.4.2)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.17(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(yaml@2.7.1)
     devDependencies:
+      '@workspace/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
       '@workspace/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      eslint:
+        specifier: ^9.25.1
+        version: 9.25.1(jiti@2.4.2)
       typescript:
         specifier: latest
         version: 5.8.3

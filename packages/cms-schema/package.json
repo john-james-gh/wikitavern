@@ -6,7 +6,8 @@
     "dev": "tsc --watch",
     "build": "rm -rf dist && tsc",
     "check-types": "tsc --noEmit",
-    "typegen": "pnpm build && sanity schema extract"
+    "typegen": "pnpm build && sanity schema extract",
+    "lint": "eslint . --max-warnings 0"
   },
   "exports": {
     "./schema-types": {
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",
-    "typescript": "latest"
+    "typescript": "latest",
+    "eslint": "^9.25.1",
+    "@workspace/eslint-config": "workspace:^"
   }
 }
