@@ -66,6 +66,7 @@ export const page = defineType({
       name: "updatedAt",
       type: "datetime",
       title: "Last Updated",
+      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: "featured",

@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <section className="px-2 py-4 prose dark:prose-invert">
-      <h1>🏡 Welcome to Wikitavern</h1>
+      <h1>🏡 Welcome to WikiTavern</h1>
       <p>
         <strong>Wikitavern</strong> is a clean, ad-free, fan-powered wiki platform. Built for contributors who
         care about the stories they tell — without the clutter of ads or corporate ownership.
@@ -19,7 +19,7 @@ export default async function Page() {
         <ul>
           {featuredPages.map((page: any) => (
             <li key={page._id}>
-              <Link href={`/${page.slug.current}`}>{page.title}</Link>
+              <Link href={`/wiki/${page.slug.current}`}>{page.title}</Link>
             </li>
           ))}
         </ul>
@@ -32,7 +32,7 @@ export default async function Page() {
         <ul>
           {recentPages.map((page: any) => (
             <li key={page._id}>
-              <Link href={`/${page.slug.current}`}>
+              <Link href={`/wiki/${page.slug.current}`}>
                 {page.title} — updated {new Date(page.updatedAt).toLocaleDateString()}
               </Link>
             </li>
