@@ -74,18 +74,13 @@ export const page = defineType({
       description: "Include this page in the Featured Wikis section on the homepage.",
     }),
     defineField({
-      name: "status",
-      type: "string",
-      title: "Status",
-      options: {
-        list: ["draft", "pending", "published"],
-      },
-      initialValue: "pending",
-    }),
-    defineField({
-      name: "submittedAt",
-      type: "datetime",
-      title: "Submitted At",
+      name: "submittedBy",
+      type: "object",
+      title: "Submitted By",
+      fields: [
+        {name: "userId", type: "string", title: "User ID"},
+        {name: "username", type: "string", title: "Username"},
+      ],
     }),
   ],
   preview: {
