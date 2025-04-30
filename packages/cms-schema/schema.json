@@ -1292,31 +1292,26 @@
         },
         "optional": true
       },
-      "status": {
+      "submittedBy": {
         "type": "objectAttribute",
         "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "draft"
+          "type": "object",
+          "attributes": {
+            "userId": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
             },
-            {
-              "type": "string",
-              "value": "pending"
-            },
-            {
-              "type": "string",
-              "value": "published"
+            "username": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
             }
-          ]
-        },
-        "optional": true
-      },
-      "submittedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
+          }
         },
         "optional": true
       }
