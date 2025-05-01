@@ -4,6 +4,7 @@ import "@workspace/ui/globals.css"
 import {Providers} from "@/components/providers"
 import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 import {AppSidebar} from "@/components/app-sidebar"
+import {SanityLive} from "@/lib/sanity/live"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
             {children}
           </main>
         </Providers>
+        <SanityLive />
       </body>
     </html>
   )
