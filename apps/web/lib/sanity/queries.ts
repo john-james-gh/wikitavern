@@ -4,6 +4,12 @@ export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slu
   _id,
   title,
   slug,
+  "seo": {
+    "title": coalesce(seo.title, title, ""),
+    "description": coalesce(seo.description,  ""),
+    "image": seo.image,
+    "noIndex": seo.noIndex == true
+  },
   content,
   category->{_id, title, slug},
   tags[]->{_id, title, slug},
@@ -34,3 +40,26 @@ export const RECENTLY_UPDATED_PAGES_QUERY = defineQuery(`*[
   slug,
   updatedAt
 }`)
+
+export const OG_IMAGE_QUERY = defineQuery(`
+  *[_id == $id][0]{
+    title,
+    "image": mainImage.asset->{
+      url,
+      metadata {
+        palette
+      }
+    }
+  }    
+`)
+
+export const SITEMAP_QUERY = defineQuery(`
+  *[_type in ["page", "post"] && defined(slug.current)] {
+      "href": select(
+        _type == "page" => "/" + slug.current,
+        _type == "post" => "/posts/" + slug.current,
+        slug.current
+      ),
+      _updatedAt
+  }
+  `)

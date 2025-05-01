@@ -24,6 +24,10 @@ export const page = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "seo",
+      type: "seo",
+    }),
+    defineField({
       name: "content",
       type: "array",
       title: "Page Content",

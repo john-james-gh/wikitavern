@@ -39,22 +39,6 @@ export type SanityImageDimensions = {
   aspectRatio?: number
 }
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot"
-  x?: number
-  y?: number
-  height?: number
-  width?: number
-}
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop"
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
 export type SanityFileAsset = {
   _id: string
   _type: "sanity.fileAsset"
@@ -77,52 +61,11 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData
 }
 
-export type SanityImageAsset = {
-  _id: string
-  _type: "sanity.imageAsset"
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  originalFilename?: string
-  label?: string
-  title?: string
-  description?: string
-  altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
-  uploadId?: string
-  path?: string
-  url?: string
-  metadata?: SanityImageMetadata
-  source?: SanityAssetSourceData
-}
-
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata"
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
-
 export type Geopoint = {
   _type: "geopoint"
   lat?: number
   lng?: number
   alt?: number
-}
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData"
-  name?: string
-  id?: string
-  url?: string
 }
 
 export type SiteSettings = {
@@ -172,6 +115,7 @@ export type Page = {
   _rev: string
   title?: string
   slug?: Slug
+  seo?: Seo
   content?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -225,6 +169,82 @@ export type Category = {
   description?: string
 }
 
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop"
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot"
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
+export type SanityImageAsset = {
+  _id: string
+  _type: "sanity.imageAsset"
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
+}
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData"
+  name?: string
+  id?: string
+  url?: string
+}
+
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata"
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
+}
+
+export type Seo = {
+  _type: "seo"
+  title?: string
+  description?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: "image"
+  }
+  noIndex?: boolean
+}
+
 export type Slug = {
   _type: "slug"
   current?: string
@@ -235,26 +255,44 @@ export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
-  | SanityImageHotspot
-  | SanityImageCrop
   | SanityFileAsset
-  | SanityImageAsset
-  | SanityImageMetadata
   | Geopoint
-  | SanityAssetSourceData
   | SiteSettings
   | Tag
   | Page
   | Category
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Seo
   | Slug
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: lib/sanity/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  _id,  title,  slug,  content,  category->{_id, title, slug},  tags[]->{_id, title, slug},  publishedAt,  updatedAt}
+// Query: *[_type == "page" && slug.current == $slug][0]{  _id,  title,  slug,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content,  category->{_id, title, slug},  tags[]->{_id, title, slug},  publishedAt,  updatedAt}
 export type PAGE_QUERYResult = {
   _id: string
   title: string | null
   slug: Slug | null
+  seo: {
+    title: string | ""
+    description: string | ""
+    image: {
+      asset?: {
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: "image"
+    } | null
+    noIndex: boolean | false
+  }
   content: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -308,14 +346,34 @@ export type RECENTLY_UPDATED_PAGES_QUERYResult = Array<{
   slug: Slug | null
   updatedAt: string | null
 }>
+// Variable: OG_IMAGE_QUERY
+// Query: *[_id == $id][0]{    title,    "image": mainImage.asset->{      url,      metadata {        palette      }    }  }
+export type OG_IMAGE_QUERYResult =
+  | {
+      title: null
+      image: null
+    }
+  | {
+      title: string | null
+      image: null
+    }
+  | null
+// Variable: SITEMAP_QUERY
+// Query: *[_type in ["page", "post"] && defined(slug.current)] {      "href": select(        _type == "page" => "/" + slug.current,        _type == "post" => "/posts/" + slug.current,        slug.current      ),      _updatedAt  }
+export type SITEMAP_QUERYResult = Array<{
+  href: string | null
+  _updatedAt: string
+}>
 
 // Query TypeMap
 import "@sanity/client"
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "page" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  content,\n  category->{_id, title, slug},\n  tags[]->{_id, title, slug},\n  publishedAt,\n  updatedAt\n}': PAGE_QUERYResult
+    '*[_type == "page" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  content,\n  category->{_id, title, slug},\n  tags[]->{_id, title, slug},\n  publishedAt,\n  updatedAt\n}': PAGE_QUERYResult
     '*[_type == "page" && defined(slug.current)]{\n  title,\n  "slug": slug.current,\n}': PAGES_SLUGS_QUERYResult
     '*[\n  _type == "page" \n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
     '*[\n  _type == "page"\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
+    '\n  *[_id == $id][0]{\n    title,\n    "image": mainImage.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n': OG_IMAGE_QUERYResult
+    '\n  *[_type in ["page", "post"] && defined(slug.current)] {\n      "href": select(\n        _type == "page" => "/" + slug.current,\n        _type == "post" => "/posts/" + slug.current,\n        slug.current\n      ),\n      _updatedAt\n  }\n  ': SITEMAP_QUERYResult
   }
 }

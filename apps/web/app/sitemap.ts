@@ -1,24 +1,25 @@
-import type {MetadataRoute} from "next"
+import {client} from "@/lib/sanity/client"
+import {SITEMAP_QUERY} from "@/lib/sanity/queries"
+import {MetadataRoute} from "next"
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://acme.com",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
-    },
-    {
-      url: "https://acme.com/about",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://acme.com/blog",
-      lastModified: new Date(),
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const paths = await client.fetch(SITEMAP_QUERY)
+
+    if (!paths) {
+      return []
+    }
+
+    const baseUrl = process.env.VERCEL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+
+    return paths.map((path) => ({
+      url: new URL(path.href!, baseUrl).toString(),
+      lastModified: new Date(path._updatedAt),
       changeFrequency: "weekly",
-      priority: 0.5,
-    },
-  ]
+      priority: 1,
+    }))
+  } catch (error) {
+    console.error("Failed to generate sitemap:", error)
+    return []
+  }
 }

@@ -1,3 +1,4 @@
+import {urlFor} from "@/lib/sanity/image"
 import {sanityFetch} from "@/lib/sanity/live"
 import {components} from "@/lib/sanity/portable-text-components"
 import {PAGE_QUERY} from "@/lib/sanity/queries"
@@ -12,13 +13,15 @@ type Props = {
   searchParams: Promise<{[key: string]: string | string[] | undefined}>
 }
 
-export async function generateMetadata({params}: Props, _parent: ResolvingMetadata): Promise<Metadata> {
-  const {slug} = await params
-
-  const {data} = await sanityFetch({
+const getPage = async (params: Props["params"]) => {
+  return sanityFetch({
     query: PAGE_QUERY,
-    params: {slug},
+    params: await params,
   })
+}
+
+export async function generateMetadata({params}: Props, _parent: ResolvingMetadata): Promise<Metadata> {
+  const {data} = await getPage(params)
 
   if (!data) {
     return {
@@ -27,19 +30,31 @@ export async function generateMetadata({params}: Props, _parent: ResolvingMetada
     }
   }
 
-  return {
-    title: `${data.title} | WikiTavern`,
-    description: data?.content?.[0]?.children?.[0]?.text?.slice(0, 150) ?? "Wikitavern page.",
+  const metadata: Metadata = {
+    title: `${data.seo.title} | WikiTavern`,
+    description: data.seo.description,
+    metadataBase: new URL("https://acme.com"),
   }
+
+  if (data.seo.image) {
+    metadata.openGraph = {
+      images: {
+        url: data.seo.image ? urlFor(data.seo.image).width(1200).height(630).url() : `/api/og?id=${data._id}`,
+        width: 1200,
+        height: 630,
+      },
+    }
+  }
+
+  if (data.seo.noIndex) {
+    metadata.robots = "noindex"
+  }
+
+  return metadata
 }
 
 async function Page({params}: Props) {
-  const {slug} = await params
-
-  const {data} = await sanityFetch({
-    query: PAGE_QUERY,
-    params: {slug},
-  })
+  const {data} = await getPage(params)
 
   if (!data) {
     notFound()
