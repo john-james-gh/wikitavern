@@ -38,7 +38,9 @@ export async function GET(request: Request) {
     notFound()
   }
 
+  // @ts-ignore
   const vibrantBackground = data?.image?.asset?.metadata?.palette?.vibrant?.background ?? "#3B82F6"
+  // @ts-ignore
   const darkVibrantBackground = data?.image?.asset?.metadata?.palette?.darkVibrant?.background ?? "#3B82F6"
 
   const text = data.title || ""
