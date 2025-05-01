@@ -5,7 +5,8 @@
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\" && pnpm --recursive exec sort-package-json",
     "lint": "turbo lint",
-    "clean-modules": "pnpm --recursive exec rm -rf node_modules"
+    "clean-modules": "pnpm --recursive exec rm -rf node_modules",
+    "knip": "knip"
   },
   "prettier": {
     "bracketSpacing": false,
@@ -13,8 +14,10 @@
     "semi": false
   },
   "devDependencies": {
+    "@types/node": "^22.15.3",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "knip": "^5.52.0",
     "prettier": "^3.5.1",
     "sort-package-json": "^3.0.0",
     "turbo": "^2.5.2",
