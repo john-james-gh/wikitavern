@@ -7,6 +7,7 @@ import type {Metadata, ResolvingMetadata} from "next"
 import {PortableText} from "next-sanity"
 import Link from "next/link"
 import {notFound} from "next/navigation"
+import {Article, WithContext} from "schema-dts"
 
 type Props = {
   params: Promise<{slug: string}>
@@ -60,6 +61,13 @@ async function Page({params}: Props) {
     notFound()
   }
 
+  const jsonLd: WithContext<Article> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    name: data.seo.title,
+    description: data.seo.description,
+  }
+
   return (
     <section className="flex flex-col gap-6 my-6">
       <nav className="px-2">
@@ -72,6 +80,7 @@ async function Page({params}: Props) {
         <h1>{data.title}</h1>
         {data.content && <PortableText value={data.content} components={components} />}
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
     </section>
   )
 }
