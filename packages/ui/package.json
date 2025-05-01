@@ -1,5 +1,7 @@
 {
   "name": "@workspace/ui",
+  "version": "1.0.0",
+  "private": true,
   "type": "module",
   "exports": {
     "./globals.css": "./src/styles/globals.css",
