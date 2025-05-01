@@ -24,8 +24,8 @@ importers:
         specifier: ^2.5.2
         version: 2.5.2
       typescript:
-        specifier: 5.7.3
-        version: 5.7.3
+        specifier: 5.8.3
+        version: 5.8.3
 
   apps/cms:
     dependencies:
@@ -67,7 +67,7 @@ importers:
         specifier: ^9.9.0
         version: 9.25.1(jiti@2.4.2)
       typescript:
-        specifier: ^5.1.6
+        specifier: ^5.8.3
         version: 5.8.3
 
   apps/design-system:
@@ -125,7 +125,7 @@ importers:
         specifier: ^8.6.12
         version: 8.6.12(prettier@3.5.3)
       typescript:
-        specifier: ^5
+        specifier: ^5.8.3
         version: 5.8.3
 
   apps/web:
@@ -195,7 +195,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       typescript:
-        specifier: ^5.7.3
+        specifier: ^5.8.3
         version: 5.8.3
 
   packages/cms-schema:
@@ -259,7 +259,7 @@ importers:
         specifier: ^15.15.0
         version: 15.15.0
       typescript:
-        specifier: ^5.7.3
+        specifier: ^5.8.3
         version: 5.8.3
       typescript-eslint:
         specifier: ^8.24.1
@@ -349,7 +349,7 @@ importers:
         specifier: ^4.0.8
         version: 4.1.4
       typescript:
-        specifier: ^5.7.3
+        specifier: ^5.8.3
         version: 5.8.3
 
 packages:
@@ -7589,11 +7589,6 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
-
-  typescript@5.7.3:
-    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
 
   typescript@5.8.3:
     resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
@@ -16861,8 +16856,6 @@ snapshots:
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
-
-  typescript@5.7.3: {}
 
   typescript@5.8.3: {}
 

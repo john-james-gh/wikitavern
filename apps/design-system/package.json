@@ -29,6 +29,6 @@
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "storybook": "^8.6.12",
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   }
 }
