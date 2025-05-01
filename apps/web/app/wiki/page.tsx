@@ -16,13 +16,17 @@ export default async function AllWikisPage() {
       </nav>
       <section className="px-2 prose dark:prose-invert">
         <h1>📚 All Wikis</h1>
-        <ul>
-          {pages.map((page: {slug: string; title: string; category?: {title: string}}) => (
-            <li key={page.slug}>
-              <Link href={`/wiki/${page.slug}`}>{page.title}</Link>
-            </li>
-          ))}
-        </ul>
+        {pages.length ? (
+          <ul>
+            {pages.map((page) => (
+              <li key={page.slug}>
+                <Link href={`/wiki/${page.slug}`}>{page.title}</Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-muted-foreground">No wikis yet — check back soon!</p>
+        )}
       </section>
     </section>
   )
