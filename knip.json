@@ -1,0 +1,6 @@
+{
+  "ignore": [".eslintrc.js", "apps/web/types/sanity.ts", "**/eslint.config.js"],
+  "ignoreDependencies": ["@workspace/eslint-config"],
+  "ignoreWorkspaces": ["packages/eslint-config", "packages/typescript-config"],
+  "ignoreUnresolved": ["@tailwindcss/postcss"]
+}
