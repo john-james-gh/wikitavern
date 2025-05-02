@@ -42,13 +42,16 @@ export const handlers: HttpHandler[] = [
     const q = normalize(raw)
 
     if (q === normalize(FEATURED_PAGES_QUERY)) {
+      console.info("[MSW]: Intercepted FEATURED_PAGES_QUERY")
       return HttpResponse.json({result: featuredMock})
     }
 
     if (q === normalize(RECENTLY_UPDATED_PAGES_QUERY)) {
+      console.info("[MSW]: Intercepted RECENTLY_UPDATED_PAGES_QUERY")
       return HttpResponse.json({result: recentMock})
     }
 
+    console.info("[MSW]: Intercepted FALLBACK")
     return HttpResponse.json({result: []})
   }),
 ]
