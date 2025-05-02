@@ -33,7 +33,7 @@
     "typegen": {
       "inputs": ["src/schema-types/**/*.ts", "lib/sanity/queries.ts"],
       "dependsOn": ["^typegen"],
-      "outputs": ["./schema.json", "./types/sanity.ts"]
+      "outputs": ["schema.json", "types/sanity.ts"]
     },
     "e2e": {
       "dependsOn": ["^build"]
