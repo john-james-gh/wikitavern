@@ -331,7 +331,7 @@ export type PAGES_SLUGS_QUERYResult = Array<{
   slug: string | null
 }>
 // Variable: FEATURED_PAGES_QUERY
-// Query: *[  _type == "page"   && featured == true ] | order(publishedAt desc)[0...6]{  _id,  title,  slug,  updatedAt}
+// Query: *[  _type == "page"   && defined(slug.current)  && featured == true ] | order(publishedAt desc)[0...6]{  _id,  title,  slug,  updatedAt}
 export type FEATURED_PAGES_QUERYResult = Array<{
   _id: string
   title: string | null
@@ -339,7 +339,7 @@ export type FEATURED_PAGES_QUERYResult = Array<{
   updatedAt: string | null
 }>
 // Variable: RECENTLY_UPDATED_PAGES_QUERY
-// Query: *[  _type == "page"] | order(updatedAt desc)[0...6]{  _id,  title,  slug,  updatedAt}
+// Query: *[  _type == "page"  && defined(slug.current)] | order(updatedAt desc)[0...6]{  _id,  title,  slug,  updatedAt}
 export type RECENTLY_UPDATED_PAGES_QUERYResult = Array<{
   _id: string
   title: string | null
@@ -371,8 +371,8 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "page" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  content,\n  category->{_id, title, slug},\n  tags[]->{_id, title, slug},\n  publishedAt,\n  updatedAt\n}': PAGE_QUERYResult
     '*[_type == "page" && defined(slug.current)]{\n  title,\n  "slug": slug.current,\n}': PAGES_SLUGS_QUERYResult
-    '*[\n  _type == "page" \n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
-    '*[\n  _type == "page"\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
+    '*[\n  _type == "page" \n  && defined(slug.current)\n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
+    '*[\n  _type == "page"\n  && defined(slug.current)\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
     '\n  *[_id == $id][0]{\n    title,\n    "image": mainImage.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n': OG_IMAGE_QUERYResult
     '\n  *[_type in ["page", "post"] && defined(slug.current)] {\n      "href": select(\n        _type == "page" => "/" + slug.current,\n        _type == "post" => "/posts/" + slug.current,\n        slug.current\n      ),\n      _updatedAt\n  }\n  ': SITEMAP_QUERYResult
   }

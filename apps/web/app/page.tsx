@@ -1,6 +1,16 @@
 import {sanityFetch} from "@/lib/sanity/live"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
+import type {Metadata} from "next"
 import Link from "next/link"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata: Metadata = {
+    title: `Home | WikiTavern`,
+    metadataBase: new URL("https://acme.com"),
+  }
+
+  return metadata
+}
 
 async function getFeaturedPages() {
   const {data} = await sanityFetch({query: FEATURED_PAGES_QUERY})
@@ -29,9 +39,9 @@ export default async function Page() {
       <h2>🚀 Featured Wikis</h2>
       {featuredPages?.length ? (
         <ul>
-          {featuredPages.map((page: any) => (
+          {featuredPages.map((page) => (
             <li key={page._id}>
-              <Link href={`/wiki/${page.slug.current}`}>{page.title}</Link>
+              <Link href={`/wiki/${page.slug?.current}`}>{page.title}</Link>
             </li>
           ))}
         </ul>
@@ -42,10 +52,10 @@ export default async function Page() {
       <h2>📦 Recently Updated</h2>
       {recentPages?.length ? (
         <ul>
-          {recentPages.map((page: any) => (
+          {recentPages.map((page) => (
             <li key={page._id}>
-              <Link href={`/wiki/${page.slug.current}`}>
-                {page.title} — updated {new Date(page.updatedAt).toLocaleDateString()}
+              <Link href={`/wiki/${page.slug?.current}`}>
+                {page.title} — updated {new Date(page.updatedAt ?? "").toLocaleDateString()}
               </Link>
             </li>
           ))}

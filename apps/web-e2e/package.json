@@ -1,0 +1,15 @@
+{
+  "name": "@workspace/web-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "@workspace/web": "workspace:*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.3"
+  }
+}

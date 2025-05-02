@@ -24,6 +24,7 @@ export const PAGES_SLUGS_QUERY = defineQuery(`*[_type == "page" && defined(slug.
 
 export const FEATURED_PAGES_QUERY = defineQuery(`*[
   _type == "page" 
+  && defined(slug.current)
   && featured == true 
 ] | order(publishedAt desc)[0...6]{
   _id,
@@ -34,6 +35,7 @@ export const FEATURED_PAGES_QUERY = defineQuery(`*[
 
 export const RECENTLY_UPDATED_PAGES_QUERY = defineQuery(`*[
   _type == "page"
+  && defined(slug.current)
 ] | order(updatedAt desc)[0...6]{
   _id,
   title,
