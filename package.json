@@ -1,10 +1,7 @@
 {
   "name": "wikitavern",
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\" && pnpm --recursive exec sort-package-json",
-    "lint": "turbo lint",
     "clean-modules": "pnpm --recursive exec rm -rf node_modules",
     "knip": "knip"
   },
