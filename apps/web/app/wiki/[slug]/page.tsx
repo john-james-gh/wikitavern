@@ -15,14 +15,15 @@ type Props = {
 }
 
 const getPage = async (params: Props["params"]) => {
-  return sanityFetch({
+  const {data} = await sanityFetch({
     query: PAGE_QUERY,
     params: await params,
   })
+  return data
 }
 
 export async function generateMetadata({params}: Props, _parent: ResolvingMetadata): Promise<Metadata> {
-  const {data} = await getPage(params)
+  const data = await getPage(params)
 
   if (!data) {
     return {
@@ -55,7 +56,7 @@ export async function generateMetadata({params}: Props, _parent: ResolvingMetada
 }
 
 async function Page({params}: Props) {
-  const {data} = await getPage(params)
+  const data = await getPage(params)
 
   if (!data) {
     notFound()
@@ -76,6 +77,7 @@ async function Page({params}: Props) {
           Back
         </Link>
       </nav>
+
       <section className="px-2 prose dark:prose-invert">
         <h1>{data.title}</h1>
         {data.content && <PortableText value={data.content} components={components} />}

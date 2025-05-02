@@ -2,9 +2,21 @@ import {sanityFetch} from "@/lib/sanity/live"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 import Link from "next/link"
 
+async function getFeaturedPages() {
+  const {data} = await sanityFetch({query: FEATURED_PAGES_QUERY})
+  return data
+}
+
+async function getRecentlyUpdatedPages() {
+  const {data} = await sanityFetch({query: RECENTLY_UPDATED_PAGES_QUERY})
+  return data
+}
+
 export default async function Page() {
-  const {data: featuredPages} = await sanityFetch({query: FEATURED_PAGES_QUERY})
-  const {data: recentPages} = await sanityFetch({query: RECENTLY_UPDATED_PAGES_QUERY})
+  const featuredPagesData = getFeaturedPages()
+  const recentlyUpdatedPagesData = getRecentlyUpdatedPages()
+
+  const [featuredPages, recentPages] = await Promise.all([featuredPagesData, recentlyUpdatedPagesData])
 
   return (
     <section className="px-2 py-4 prose dark:prose-invert">
