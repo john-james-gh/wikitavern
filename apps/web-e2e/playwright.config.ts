@@ -75,7 +75,5 @@ export default defineConfig({
     command: process.env.CI ? "NODE_ENV=test pnpm --dir ../web start" : "NODE_ENV=test pnpm --dir ../web dev",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: !process.env.CI,
-    // give the server up to 2 minutes to spin up
-    timeout: 120_000,
   },
 })
