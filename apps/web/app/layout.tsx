@@ -1,10 +1,10 @@
 import {Geist, Geist_Mono} from "next/font/google"
-
 import "@workspace/ui/globals.css"
 import {Providers} from "@/components/providers"
 import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 import {AppSidebar} from "@/components/app-sidebar"
 import {SanityLive} from "@/lib/sanity/live"
+import {API_MOCKING} from "@/config/environment"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -15,6 +15,12 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
+
+if (API_MOCKING === "enabled") {
+  // We use `require` instead of `import` to load MSW only at runtime in dev.
+  // This prevents the mock code from being bundled into the production build.
+  require("../lib/msw")
+}
 
 export default function RootLayout({
   children,
@@ -31,7 +37,7 @@ export default function RootLayout({
             {children}
           </main>
         </Providers>
-        <SanityLive />
+        {API_MOCKING === "enabled" ? null : <SanityLive />}
       </body>
     </html>
   )
