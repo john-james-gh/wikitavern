@@ -17,10 +17,10 @@ test("has three h2", async ({page}) => {
 
 test.describe("mocks", () => {
   async function setMock(page: Page, data: unknown) {
-    await page.request.post("http://localhost:3000/api/test/mocks", {data})
+    await page.request.post("/api/test/mocks", {data})
   }
   async function resetMock(page: Page) {
-    await page.request.delete("http://localhost:3000/api/test/mocks")
+    await page.request.delete("/api/test/mocks")
   }
 
   test.describe.configure({mode: "serial"})
