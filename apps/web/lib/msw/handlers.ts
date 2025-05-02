@@ -1,4 +1,4 @@
-import {rest} from "msw"
+import {http, HttpResponse, type HttpHandler} from "msw"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 import {SANITY_PROJECT_ID} from "@/config/environment"
 import type {FEATURED_PAGES_QUERYResult, RECENTLY_UPDATED_PAGES_QUERYResult} from "@/types/sanity"
@@ -35,17 +35,20 @@ const recentMock: RECENTLY_UPDATED_PAGES_QUERYResult = [
 
 const normalize = (s: string) => decodeURIComponent(s).replace(/\s+/g, " ").trim()
 
-export const handlers = [
-  rest.get(`https://${SANITY_PROJECT_ID}.apicdn.sanity.io/vX/data/query/:dataset`, (req, res, ctx) => {
-    const raw = req.url.searchParams.get("query") || ""
+export const handlers: HttpHandler[] = [
+  http.get(`https://${SANITY_PROJECT_ID}.apicdn.sanity.io/vX/data/query/:dataset`, ({request}) => {
+    const url = new URL(request.url)
+    const raw = url.searchParams.get("query") || ""
     const q = normalize(raw)
 
     if (q === normalize(FEATURED_PAGES_QUERY)) {
-      return res(ctx.json({result: featuredMock}))
+      return HttpResponse.json({result: featuredMock})
     }
+
     if (q === normalize(RECENTLY_UPDATED_PAGES_QUERY)) {
-      return res(ctx.json({result: recentMock}))
+      return HttpResponse.json({result: recentMock})
     }
-    return res(ctx.json({result: []}))
+
+    return HttpResponse.json({result: []})
   }),
 ]
