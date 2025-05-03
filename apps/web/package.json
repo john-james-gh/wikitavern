@@ -37,9 +37,11 @@
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "msw": "^2.7.5",
-    "typescript": "^5.8.3"
-  },
-  "msw": {
-    "workerDirectory": "public"
+    "typescript": "^5.8.3",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "jsdom": "^26.1.0",
+    "@vitejs/plugin-react": "^4.3.1"
   }
 }

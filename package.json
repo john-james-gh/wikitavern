@@ -3,7 +3,9 @@
   "scripts": {
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\" && pnpm --recursive exec sort-package-json",
     "clean-modules": "pnpm --recursive exec rm -rf node_modules",
-    "knip": "knip"
+    "knip": "knip",
+    "test-watch": "vitest watch",
+    "test": "vitest --coverage --run"
   },
   "prettier": {
     "bracketSpacing": false,
@@ -18,7 +20,9 @@
     "prettier": "^3.5.1",
     "sort-package-json": "^3.0.0",
     "turbo": "^2.5.2",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "vitest": "latest",
+    "@vitest/coverage-v8": "latest"
   },
   "packageManager": "pnpm@10.10.0",
   "engines": {
