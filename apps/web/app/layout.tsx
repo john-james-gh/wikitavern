@@ -5,6 +5,7 @@ import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 import {AppSidebar} from "@/components/app-sidebar"
 import {SanityLive} from "@/lib/sanity/live"
 import {API_MOCKING} from "@/config/environment"
+import {HeaderAuth} from "@/components/header-auth"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -15,6 +16,14 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
+
+const defaultUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+
+export const metadata = {
+  metadataBase: new URL(defaultUrl),
+  title: "WikiTavern",
+  description: "The fastest way to build apps with Next.js and Supabase",
+}
 
 if (API_MOCKING === "enabled") {
   // We use `require` instead of `import` to load MSW only at runtime in dev.
@@ -34,6 +43,7 @@ export default function RootLayout({
         <Providers>
           <AppSidebar />
           <main className="p-4">
+            <HeaderAuth />
             <SidebarTrigger />
             {children}
           </main>

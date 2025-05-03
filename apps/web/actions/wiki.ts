@@ -28,7 +28,7 @@ function markdownToBlocks(md: string) {
   return htmlToBlocks(html, blockContentType)
 }
 
-export async function createPage(
+export async function createPageAction(
   _currentState: FormActionResponse,
   data: ContributionInput,
 ): Promise<FormActionResponse> {

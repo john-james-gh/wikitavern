@@ -1,4 +1,4 @@
 {
-  "cSpell.words": ["autodocs", "hotspot", "portabletext", "turbopack", "viewports", "wikitavern"],
+  "cSpell.words": ["autodocs", "hotspot", "portabletext", "supabase", "turbopack", "viewports", "wikitavern"],
   "github-actions.workflows.pinned.workflows": [".github/workflows/ci.yaml"]
 }
