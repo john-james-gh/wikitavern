@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalPassThroughEnv": ["PLAYWRIGHT_*"],
+  "globalPassThroughEnv": ["PLAYWRIGHT_*", "VERCEL", "VERCEL_URL"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
