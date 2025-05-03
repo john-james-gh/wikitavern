@@ -43,18 +43,6 @@ export const RECENTLY_UPDATED_PAGES_QUERY = defineQuery(`*[
   updatedAt
 }`)
 
-export const OG_IMAGE_QUERY = defineQuery(`
-  *[_id == $id][0]{
-    title,
-    "image": mainImage.asset->{
-      url,
-      metadata {
-        palette
-      }
-    }
-  }    
-`)
-
 export const SITEMAP_QUERY = defineQuery(`
   *[_type in ["page", "post"] && defined(slug.current)] {
       "href": select(

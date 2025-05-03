@@ -346,18 +346,6 @@ export type RECENTLY_UPDATED_PAGES_QUERYResult = Array<{
   slug: Slug | null
   updatedAt: string | null
 }>
-// Variable: OG_IMAGE_QUERY
-// Query: *[_id == $id][0]{    title,    "image": mainImage.asset->{      url,      metadata {        palette      }    }  }
-export type OG_IMAGE_QUERYResult =
-  | {
-      title: null
-      image: null
-    }
-  | {
-      title: string | null
-      image: null
-    }
-  | null
 // Variable: SITEMAP_QUERY
 // Query: *[_type in ["page", "post"] && defined(slug.current)] {      "href": select(        _type == "page" => "/" + slug.current,        _type == "post" => "/posts/" + slug.current,        slug.current      ),      _updatedAt  }
 export type SITEMAP_QUERYResult = Array<{
@@ -373,7 +361,6 @@ declare module "@sanity/client" {
     '*[_type == "page" && defined(slug.current)]{\n  title,\n  "slug": slug.current,\n}': PAGES_SLUGS_QUERYResult
     '*[\n  _type == "page" \n  && defined(slug.current)\n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
     '*[\n  _type == "page"\n  && defined(slug.current)\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
-    '\n  *[_id == $id][0]{\n    title,\n    "image": mainImage.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n': OG_IMAGE_QUERYResult
     '\n  *[_type in ["page", "post"] && defined(slug.current)] {\n      "href": select(\n        _type == "page" => "/" + slug.current,\n        _type == "post" => "/posts/" + slug.current,\n        slug.current\n      ),\n      _updatedAt\n  }\n  ': SITEMAP_QUERYResult
   }
 }

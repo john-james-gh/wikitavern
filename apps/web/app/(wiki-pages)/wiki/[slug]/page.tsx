@@ -38,16 +38,6 @@ export async function generateMetadata({params}: Props, _parent: ResolvingMetada
     metadataBase: new URL("https://acme.com"),
   }
 
-  if (data.seo.image) {
-    metadata.openGraph = {
-      images: {
-        url: data.seo.image ? urlFor(data.seo.image).width(1200).height(630).url() : `/api/og?id=${data._id}`,
-        width: 1200,
-        height: 630,
-      },
-    }
-  }
-
   if (data.seo.noIndex) {
     metadata.robots = "noindex"
   }
