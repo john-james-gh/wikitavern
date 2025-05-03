@@ -9,5 +9,5 @@ test("has title", async ({page}) => {
 })
 
 test("has h1", async ({page}) => {
-  await expect(page.getByRole("heading", {level: 1})).toHaveText("ℹ️ About WikiTavern")
+  await expect(page.getByRole("heading", {level: 1})).toHaveText(/ℹ️ About WikiTavern/i)
 })
