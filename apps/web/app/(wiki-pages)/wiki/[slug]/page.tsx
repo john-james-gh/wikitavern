@@ -59,20 +59,20 @@ async function Page({params}: Props) {
   }
 
   return (
-    <section className="flex flex-col gap-6 my-6">
-      <nav className="px-2">
+    <main className="flex flex-col gap-6">
+      <nav>
         <Link href="/" className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
           Back
         </Link>
       </nav>
 
-      <section className="px-2 prose dark:prose-invert">
+      <section className="prose dark:prose-invert">
         <h1>{data.title}</h1>
         {data.content && <PortableText value={data.content} components={components} />}
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
-    </section>
+    </main>
   )
 }
 

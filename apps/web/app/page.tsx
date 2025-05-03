@@ -29,7 +29,7 @@ export default async function Page() {
   const [featuredPages, recentPages] = await Promise.all([featuredPagesData, recentlyUpdatedPagesData])
 
   return (
-    <section className="px-2 py-4 prose dark:prose-invert">
+    <main className="prose dark:prose-invert">
       <h1>🏡 Welcome to WikiTavern</h1>
       <p>
         <strong>Wikitavern</strong> is a clean, ad-free, fan-powered wiki platform. Built for contributors who
@@ -70,6 +70,6 @@ export default async function Page() {
         <br />
         Learn how to contribute → (link to About or Contribution Guide)
       </p>
-    </section>
+    </main>
   )
 }

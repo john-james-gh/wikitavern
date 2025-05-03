@@ -22,9 +22,9 @@ export default async function Page() {
   }
 
   return (
-    <section className="px-2 py-4 prose dark:prose-invert">
+    <main className="prose dark:prose-invert">
       <h1>{data.title}</h1>
       {data?.content && <PortableText value={data.content} components={components} />}
-    </section>
+    </main>
   )
 }

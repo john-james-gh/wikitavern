@@ -1,4 +1,6 @@
+import {signOutAction} from "@/actions/auth"
 import {createClient} from "@/lib/supabase/server"
+import {Button} from "@workspace/ui/components/button"
 import {InfoIcon} from "lucide-react"
 import {redirect} from "next/navigation"
 
@@ -21,6 +23,11 @@ export default async function ProtectedPage() {
           This is a protected page that you can only see as an authenticated user
         </div>
       </div>
+      <form>
+        <Button type="submit" variant={"outline"} formAction={signOutAction}>
+          Sign out
+        </Button>
+      </form>
       <div className="flex flex-col gap-2 items-start">
         <h2 className="font-bold text-2xl mb-4">Your user details</h2>
         <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">

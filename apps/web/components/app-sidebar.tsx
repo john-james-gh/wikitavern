@@ -14,6 +14,7 @@ import {
 } from "@workspace/ui/components/sidebar"
 import Link from "next/link"
 import {ThemeSwitch} from "./theme-switch"
+import type {User} from "@supabase/supabase-js"
 
 const exploreItems = [
   {emoji: "🏠", label: "Home", url: "/"},
@@ -28,7 +29,21 @@ const aboutItems = [
   {emoji: "🛠️", label: "Contribution Guide", url: "/contribute"},
 ]
 
-export function AppSidebar() {
+const authItems = [
+  {emoji: "🔑", label: "Sign In", url: "/sign-in"},
+  {emoji: "📝", label: "Sign Up", url: "/sign-up"},
+]
+
+const accountItems = [
+  {emoji: "👤", label: "Profile", url: "/profile"},
+  {emoji: "⚙️", label: "Settings", url: "/settings"},
+]
+
+type AppSidebarProps = {
+  user: User | null
+}
+
+export function AppSidebar({user}: AppSidebarProps) {
   const pathname = usePathname()
 
   return (
@@ -66,6 +81,41 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {user ? (
+                <>
+                  {accountItems.map((item) => (
+                    <SidebarMenuItem key={item.label}>
+                      <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
+                        <Link href={item.url}>
+                          <span className="mr-2">{item.emoji}</span>
+                          <span>{item.label}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {authItems.map((item) => (
+                    <SidebarMenuItem key={item.label}>
+                      <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
+                        <Link href={item.url}>
+                          <span className="mr-2">{item.emoji}</span>
+                          <span>{item.label}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

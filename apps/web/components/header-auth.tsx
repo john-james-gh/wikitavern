@@ -1,7 +1,6 @@
-import Link from "next/link"
-import {Button} from "@workspace/ui/components/button"
 import {createClient} from "@/lib/supabase/server"
-import {signOutAction} from "@/actions/auth"
+import {Separator} from "@workspace/ui/components/separator"
+import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 
 export async function HeaderAuth() {
   const supabase = await createClient()
@@ -10,23 +9,15 @@ export async function HeaderAuth() {
     data: {user},
   } = await supabase.auth.getUser()
 
-  return user ? (
-    <div className="flex items-center gap-4 pb-2 px-2">
-      Hey, {user.email}!
-      <form action={signOutAction}>
-        <Button type="submit" variant={"outline"}>
-          Sign out
-        </Button>
-      </form>
-    </div>
-  ) : (
-    <div className="flex gap-2 pb-4 px-2">
-      <Button asChild size="sm" variant={"outline"}>
-        <Link href="/sign-in">Sign in</Link>
-      </Button>
-      <Button asChild size="sm" variant={"default"}>
-        <Link href="/sign-up">Sign up</Link>
-      </Button>
-    </div>
+  if (!user) {
+    return null
+  }
+
+  return (
+    <header className="flex items-center gap-4">
+      <SidebarTrigger className="size-4" />
+      <Separator orientation="vertical" />
+      <span>Hey, {user.email}!</span>
+    </header>
   )
 }

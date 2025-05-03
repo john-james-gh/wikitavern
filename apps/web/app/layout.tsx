@@ -1,11 +1,11 @@
 import {Geist, Geist_Mono} from "next/font/google"
 import "@workspace/ui/globals.css"
 import {Providers} from "@/components/providers"
-import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 import {AppSidebar} from "@/components/app-sidebar"
 import {SanityLive} from "@/lib/sanity/live"
 import {API_MOCKING} from "@/config/environment"
 import {HeaderAuth} from "@/components/header-auth"
+import {createClient} from "@/lib/supabase/server"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -32,21 +32,26 @@ if (API_MOCKING === "enabled") {
   import("../lib/msw")
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const supabase = await createClient()
+
+  const {
+    data: {user},
+  } = await supabase.auth.getUser()
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}>
+      <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <Providers>
-          <AppSidebar />
-          <main className="p-4">
+          <AppSidebar user={user} />
+          <div className="p-6 flex flex-col gap-6">
             <HeaderAuth />
-            <SidebarTrigger />
             {children}
-          </main>
+          </div>
         </Providers>
         {API_MOCKING === "enabled" ? null : <SanityLive />}
       </body>
