@@ -1,9 +1,8 @@
-import {urlFor} from "@/lib/sanity/image"
 import {sanityFetch} from "@/lib/sanity/live"
 import {components} from "@/lib/sanity/portable-text-components"
 import {PAGE_QUERY} from "@/lib/sanity/queries"
 import {ArrowLeft} from "lucide-react"
-import type {Metadata, ResolvingMetadata} from "next"
+import type {Metadata} from "next"
 import {PortableText} from "next-sanity"
 import Link from "next/link"
 import {notFound} from "next/navigation"
@@ -22,7 +21,7 @@ const getPage = async (params: Props["params"]) => {
   return data
 }
 
-export async function generateMetadata({params}: Props, _parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({params}: Props): Promise<Metadata> {
   const data = await getPage(params)
 
   if (!data) {
