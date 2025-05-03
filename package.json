@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "knip": "^5.52.0",
     "prettier": "^3.5.1",
