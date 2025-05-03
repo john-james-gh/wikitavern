@@ -2,7 +2,6 @@ import {http, HttpResponse, type HttpHandler} from "msw"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 import {SANITY_PROJECT_ID} from "@/config/environment"
 import type {FEATURED_PAGES_QUERYResult, RECENTLY_UPDATED_PAGES_QUERYResult} from "@/types/sanity"
-import {globalMockState} from "./global-mock-state"
 
 const featuredMock: FEATURED_PAGES_QUERYResult = [
   {
@@ -44,12 +43,12 @@ export const handlers: HttpHandler[] = [
 
     if (q === normalize(FEATURED_PAGES_QUERY)) {
       console.info("[MSW]: Intercepted FEATURED_PAGES_QUERY")
-      return HttpResponse.json({result: globalMockState.featuredOverride ?? featuredMock})
+      return HttpResponse.json({result: featuredMock})
     }
 
     if (q === normalize(RECENTLY_UPDATED_PAGES_QUERY)) {
       console.info("[MSW]: Intercepted RECENTLY_UPDATED_PAGES_QUERY")
-      return HttpResponse.json({result: globalMockState.recentOverride ?? recentMock})
+      return HttpResponse.json({result: recentMock})
     }
 
     console.info("[MSW]: Intercepted FALLBACK")
