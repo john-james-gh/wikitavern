@@ -5,7 +5,7 @@ import {Input} from "@workspace/ui/components/input"
 import {Label} from "@workspace/ui/components/label"
 import Link from "next/link"
 
-export default async function Login(props: {searchParams: Promise<Message>}) {
+export default async function SignIn(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams
   return (
     <form className="flex-1 flex flex-col min-w-64">
