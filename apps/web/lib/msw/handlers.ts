@@ -1,7 +1,11 @@
 import {http, HttpResponse, type HttpHandler} from "msw"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 import {SANITY_PROJECT_ID} from "@/config/environment"
-import type {FEATURED_PAGES_QUERYResult, RECENTLY_UPDATED_PAGES_QUERYResult} from "@/types/sanity"
+import type {
+  FEATURED_PAGES_QUERYResult,
+  RECENTLY_UPDATED_PAGES_QUERYResult,
+  PAGE_QUERYResult,
+} from "@/types/sanity"
 
 const featuredMock: FEATURED_PAGES_QUERYResult = [
   {
@@ -33,20 +37,66 @@ const recentMock: RECENTLY_UPDATED_PAGES_QUERYResult = [
   },
 ]
 
-const normalize = (s: string) => decodeURIComponent(s).replace(/\s+/g, " ").trim()
+const aboutPageMock: PAGE_QUERYResult = {
+  _id: "about-page-id",
+  title: "ℹ️ About WikiTavern",
+  slug: {_type: "slug", current: "about"},
+  seo: {
+    title: "About | WikiTavern",
+    description: "Learn more about WikiTavern, our mission, and our community.",
+    image: null,
+    noIndex: false,
+  },
+  content: [
+    {
+      _type: "block",
+      style: "normal",
+      _key: "key_91",
+      children: [
+        {
+          _type: "span",
+          text: "Welcome to the About page!",
+          _key: "key_23",
+        },
+      ],
+    },
+  ],
+  category: null,
+  tags: null,
+  publishedAt: null,
+  updatedAt: null,
+}
+
+const normalizeQueryParam = (s: string | null) => {
+  if (!s) return ""
+  return decodeURIComponent(s).replace(/\s+/g, " ").trim()
+}
+const normalizeSlugParam = (s: string | null) => {
+  if (!s) return ""
+  return decodeURIComponent(s).replace(/^"|"$/g, "").trim()
+}
 
 export const handlers: HttpHandler[] = [
   http.get(`https://${SANITY_PROJECT_ID}.apicdn.sanity.io/vX/data/query/:dataset`, ({request}) => {
     const url = new URL(request.url)
-    const raw = url.searchParams.get("query") || ""
-    const q = normalize(raw)
+    const queryParam = normalizeQueryParam(url.searchParams.get("query"))
+    const slugParam = normalizeSlugParam(url.searchParams.get("$slug"))
 
-    if (q === normalize(FEATURED_PAGES_QUERY)) {
+    if (
+      queryParam.includes('_type == "page"') &&
+      queryParam.includes("slug.current == $slug") &&
+      slugParam === "about"
+    ) {
+      console.info("[MSW]: Intercepted PAGE_QUERY for about page")
+      return HttpResponse.json({result: aboutPageMock})
+    }
+
+    if (queryParam === normalizeQueryParam(FEATURED_PAGES_QUERY)) {
       console.info("[MSW]: Intercepted FEATURED_PAGES_QUERY")
       return HttpResponse.json({result: featuredMock})
     }
 
-    if (q === normalize(RECENTLY_UPDATED_PAGES_QUERY)) {
+    if (queryParam === normalizeQueryParam(RECENTLY_UPDATED_PAGES_QUERY)) {
       console.info("[MSW]: Intercepted RECENTLY_UPDATED_PAGES_QUERY")
       return HttpResponse.json({result: recentMock})
     }
