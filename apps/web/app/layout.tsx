@@ -26,10 +26,10 @@ export const metadata = {
 }
 
 if (API_MOCKING === "enabled") {
-  // We use `require` instead of `import` to load MSW only at runtime in dev.
+  // We use dynamic import to load MSW only at runtime in dev.
   // This prevents the mock code from being bundled into the production build.
   console.warn("API mocking is enabled.")
-  require("../lib/msw")
+  import("../lib/msw")
 }
 
 export default function RootLayout({
