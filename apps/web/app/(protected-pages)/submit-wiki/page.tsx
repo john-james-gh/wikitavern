@@ -50,7 +50,7 @@ export default async function SubmitWikiPage(props: {searchParams: Promise<Messa
         <div className="max-w-md flex flex-col gap-2">
           <Label htmlFor="slug">Slug</Label>
           <p className="text-sm prose dark:prose-invert">
-            Must be unique. Look up existing Wikis to ensure you're not creating a duplicate.
+            Must be unique. Look up existing Wikis to ensure you&apos;re not creating a duplicate.
           </p>
           <Input name="slug" />
         </div>
