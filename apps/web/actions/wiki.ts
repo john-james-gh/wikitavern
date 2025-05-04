@@ -6,6 +6,7 @@ import {blockContentType} from "@/lib/sanity/block-content-type"
 import {createClient} from "@/lib/supabase/server"
 import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
 import {JSDOM} from "jsdom"
+import DOMPurify from "isomorphic-dompurify"
 
 function markdownToBlocks(md: string) {
   const html = micromark(md)
@@ -33,7 +34,8 @@ export const submitWikiAction = async (formData: FormData) => {
     return encodedRedirect("error", "/submit-wiki", "Fields are required")
   }
 
-  const blocks = markdownToBlocks(content)
+  const safeContent = DOMPurify.sanitize(content)
+  const blocks = markdownToBlocks(safeContent)
 
   const {error} = await supabase.from("wiki_submissions").insert({
     title,

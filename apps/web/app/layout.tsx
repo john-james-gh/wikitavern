@@ -48,7 +48,7 @@ export default async function RootLayout({
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <Providers>
           <AppSidebar user={user} />
-          <div className="p-6 flex flex-col gap-6">
+          <div className="p-6 w-screen flex flex-col gap-6">
             <Header user={user} />
             {children}
           </div>
