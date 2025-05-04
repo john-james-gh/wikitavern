@@ -1,10 +1,17 @@
 import {signOutAction} from "@/actions/auth"
+import {sanityFetch} from "@/lib/sanity/live"
+import {PAGES_BY_USER_QUERY} from "@/lib/sanity/queries"
 import {createClient} from "@/lib/supabase/server"
 import {Button} from "@workspace/ui/components/button"
-import {InfoIcon} from "lucide-react"
+import Link from "next/link"
 import {redirect} from "next/navigation"
 
-export default async function ProtectedPage() {
+export const metadata = {
+  title: "Profile | WikiTavern",
+  description: "The fastest way to build apps with Next.js and Supabase",
+}
+
+export default async function Page() {
   const supabase = await createClient()
 
   const {
@@ -15,25 +22,35 @@ export default async function ProtectedPage() {
     return redirect("/sign-in")
   }
 
+  const {data} = await sanityFetch({query: PAGES_BY_USER_QUERY, params: {userId: user.id}})
+
   return (
-    <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="w-full">
-        <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
-          <InfoIcon size="16" strokeWidth={2} />
-          This is a protected page that you can only see as an authenticated user
-        </div>
-      </div>
+    <main className="flex flex-col prose dark:prose-invert">
+      <h1>👤 Your WikiTavern Profile</h1>
+      <p>
+        <strong>Wikitavern</strong> is a clean, ad-free, fan-powered wiki platform. Built for contributors who
+        care about the stories they tell — without the clutter of ads or corporate ownership.
+      </p>
       <form>
         <Button type="submit" variant={"outline"} formAction={signOutAction}>
           Sign out
         </Button>
       </form>
-      <div className="flex flex-col gap-2 items-start">
-        <h2 className="font-bold text-2xl mb-4">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          {JSON.stringify(user, null, 2)}
-        </pre>
-      </div>
-    </div>
+
+      <article>
+        <h2>🚀 Your Wikis</h2>
+        {data?.length ? (
+          <ul>
+            {data.map((page) => (
+              <li key={page._id}>
+                <Link href={`/wiki/${page.slug}`}>{page.title}</Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-muted-foreground">No wikis yet!</p>
+        )}
+      </article>
+    </main>
   )
 }

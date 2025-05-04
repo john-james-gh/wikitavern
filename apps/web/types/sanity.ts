@@ -352,6 +352,20 @@ export type SITEMAP_QUERYResult = Array<{
   href: string | null
   _updatedAt: string
 }>
+// Variable: PAGES_BY_USER_QUERY
+// Query: *[_type == "page" && submittedBy.userId == $userId]{    _id,    title,    "slug": slug.current,    publishedAt,    updatedAt,    featured,    submittedBy  }
+export type PAGES_BY_USER_QUERYResult = Array<{
+  _id: string
+  title: string | null
+  slug: string | null
+  publishedAt: string | null
+  updatedAt: string | null
+  featured: boolean | null
+  submittedBy: {
+    userId?: string
+    username?: string
+  } | null
+}>
 
 // Query TypeMap
 import "@sanity/client"
@@ -362,5 +376,6 @@ declare module "@sanity/client" {
     '*[\n  _type == "page" \n  && defined(slug.current)\n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
     '*[\n  _type == "page"\n  && defined(slug.current)\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
     '\n  *[_type in ["page", "post"] && defined(slug.current)] {\n      "href": select(\n        _type == "page" => "/" + slug.current,\n        _type == "post" => "/posts/" + slug.current,\n        slug.current\n      ),\n      _updatedAt\n  }\n  ': SITEMAP_QUERYResult
+    '\n  *[_type == "page" && submittedBy.userId == $userId]{\n    _id,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    updatedAt,\n    featured,\n    submittedBy\n  }\n': PAGES_BY_USER_QUERYResult
   }
 }

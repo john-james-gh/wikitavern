@@ -53,3 +53,15 @@ export const SITEMAP_QUERY = defineQuery(`
       _updatedAt
   }
   `)
+
+export const PAGES_BY_USER_QUERY = defineQuery(`
+  *[_type == "page" && submittedBy.userId == $userId]{
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    updatedAt,
+    featured,
+    submittedBy
+  }
+`)
