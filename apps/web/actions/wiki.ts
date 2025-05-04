@@ -1,70 +1,55 @@
 "use server"
 
-import {writeClient} from "@/lib/sanity/client"
-import {z} from "zod"
 import {micromark} from "micromark"
 import {htmlToBlocks} from "@portabletext/block-tools"
 import {blockContentType} from "@/lib/sanity/block-content-type"
-
-export const ContributionSchema = z.object({
-  slug: z.string().min(1, "Slug is required"),
-  title: z.string().min(1, "Title is required"),
-  content: z.string().min(1, "Content cannot be empty"),
-  category: z.string().optional(),
-  requestedCategory: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  requestedTags: z.array(z.string()).optional(),
-})
-
-export type ContributionInput = z.infer<typeof ContributionSchema>
-
-export interface FormActionResponse {
-  message: string
-  errors?: Record<string, string>
-}
+import {createClient} from "@/lib/supabase/server"
+import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
+import {JSDOM} from "jsdom"
 
 function markdownToBlocks(md: string) {
   const html = micromark(md)
-  return htmlToBlocks(html, blockContentType)
+  return htmlToBlocks(html, blockContentType, {
+    parseHtml: (htmlString) => new JSDOM(htmlString).window.document,
+  })
 }
 
-export async function createPageAction(
-  _currentState: FormActionResponse,
-  data: ContributionInput,
-): Promise<FormActionResponse> {
-  const parseResult = ContributionSchema.safeParse(data)
+export const submitWikiAction = async (formData: FormData) => {
+  const supabase = await createClient()
 
-  if (!parseResult.success) {
-    const errors = parseResult.error.flatten().fieldErrors
-    return {
-      message: "validation_error",
-      errors: Object.fromEntries(
-        Object.entries(errors).map(([key, val]) => [key, val?.[0] || "Invalid input"]),
-      ),
-    }
+  const {
+    data: {user},
+  } = await supabase.auth.getUser()
+
+  if (!user?.id) {
+    return encodedRedirect("error", "/sign-in", "You must be signed in to submit a Wiki")
   }
 
-  const {slug, title, content, category, requestedCategory, tags, requestedTags} = parseResult.data
+  const title = formData.get("title")?.toString().trim()
+  const slug = formData.get("slug")?.toString().trim()
+  const content = formData.get("content")?.toString().trim()
+
+  if (!title || !slug || !content) {
+    return encodedRedirect("error", "/submit-wiki", "Fields are required")
+  }
 
   const blocks = markdownToBlocks(content)
 
-  try {
-    await writeClient.create({
-      _type: "page",
-      title,
-      slug: {current: slug},
-      content: blocks,
-      category: category ? {_type: "reference", _ref: category} : undefined,
-      requestedCategory: requestedCategory || undefined,
-      tags: tags?.map((tagId) => ({_type: "reference", _ref: tagId})) || [],
-      requestedTags: requestedTags || [],
-      status: "pending",
-      submittedAt: new Date().toISOString(),
-    })
+  const {error} = await supabase.from("wiki_submissions").insert({
+    title,
+    slug,
+    content: blocks,
+    submitted_by: user.id,
+  })
 
-    return {message: "success"}
-  } catch (error) {
-    console.error("Sanity write error:", error)
-    return {message: "sanity_error"}
+  if (error) {
+    console.error(error.code + " " + error.message)
+    return encodedRedirect("error", "/submit-wiki", error.message)
   }
+
+  return encodedRedirect(
+    "success",
+    "/submit-wiki",
+    "Thanks for submitting a Wiki! Hang tight while a moderator reviews it. You can track progress on your profile page.",
+  )
 }

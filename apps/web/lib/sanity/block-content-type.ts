@@ -1,7 +1,10 @@
 import {Schema} from "@sanity/schema"
-import rawSchema from "@workspace/cms-schema/schema.json"
+import {schemaTypes} from "@workspace/cms-schema/schema-types"
 
-const compiled = Schema.compile({types: rawSchema})
+const compiled = Schema.compile({
+  types: schemaTypes,
+})
+
 export const blockContentType = compiled
   .get("page")
-  .fields.find((f: {name: string}) => f.name === "content")?.type
+  .fields.find((f: {name: string}) => f.name === "content").type

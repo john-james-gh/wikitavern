@@ -26,13 +26,13 @@ export const signUpAction = async (formData: FormData) => {
   if (error) {
     console.error(error.code + " " + error.message)
     return encodedRedirect("error", "/sign-up", error.message)
-  } else {
-    return encodedRedirect(
-      "success",
-      "/sign-up",
-      "Thanks for signing up! Please check your email for a verification link.",
-    )
   }
+
+  return encodedRedirect(
+    "success",
+    "/sign-up",
+    "Thanks for signing up! Please check your email for a verification link.",
+  )
 }
 
 export const signInAction = async (formData: FormData) => {
@@ -85,11 +85,11 @@ export const resetPasswordAction = async (formData: FormData) => {
   const confirmPassword = formData.get("confirmPassword") as string
 
   if (!password || !confirmPassword) {
-    encodedRedirect("error", "/reset-password", "Password and confirm password are required")
+    return encodedRedirect("error", "/reset-password", "Password and confirm password are required")
   }
 
   if (password !== confirmPassword) {
-    encodedRedirect("error", "/reset-password", "Passwords do not match")
+    return encodedRedirect("error", "/reset-password", "Passwords do not match")
   }
 
   const {error} = await supabase.auth.updateUser({
@@ -97,10 +97,10 @@ export const resetPasswordAction = async (formData: FormData) => {
   })
 
   if (error) {
-    encodedRedirect("error", "/reset-password", "Password update failed")
+    return encodedRedirect("error", "/reset-password", "Password update failed")
   }
 
-  encodedRedirect("success", "/reset-password", "Password updated")
+  return encodedRedirect("success", "/reset-password", "Password updated")
 }
 
 export const signOutAction = async () => {
