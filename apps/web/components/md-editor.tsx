@@ -6,7 +6,7 @@ import MDEditor from "@uiw/react-md-editor"
 import {useTheme} from "next-themes"
 
 export function MarkdownField() {
-  const [value, setValue] = useState<string | undefined>("**Hello world!!!**")
+  const [value, setValue] = useState<string | undefined>("**My New Wiki**")
   const {resolvedTheme} = useTheme()
 
   return (
@@ -18,6 +18,7 @@ export function MarkdownField() {
         previewOptions={{
           rehypePlugins: [[rehypeSanitize]],
         }}
+        commandsFilter={(cmd) => (cmd.name !== "image" && cmd.name !== "strikethrough" ? cmd : false)}
       />
       <textarea name="content" value={value} hidden readOnly />
     </div>

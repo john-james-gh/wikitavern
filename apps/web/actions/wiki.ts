@@ -42,6 +42,7 @@ export const submitWikiAction = async (formData: FormData) => {
     slug,
     content: blocks,
     submitted_by: user.id,
+    submitted_username: user.user_metadata.username,
   })
 
   if (error) {
