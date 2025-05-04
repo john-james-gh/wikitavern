@@ -80,24 +80,6 @@ export function AppSidebar({user, userRole}: AppSidebarProps) {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>About</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {aboutItems.map((item) => (
-                <SidebarMenuItem key={item.label}>
-                  <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
-                    <Link href={item.url}>
-                      <span className="mr-2">{item.emoji}</span>
-                      <span>{item.label}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
           <SidebarGroupLabel>Account</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -179,6 +161,24 @@ export function AppSidebar({user, userRole}: AppSidebarProps) {
             </SidebarGroupContent>
           </SidebarGroup>
         )}
+
+        <SidebarGroup>
+          <SidebarGroupLabel>About</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {aboutItems.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
+                    <Link href={item.url}>
+                      <span className="mr-2">{item.emoji}</span>
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
 
       <SidebarFooter>

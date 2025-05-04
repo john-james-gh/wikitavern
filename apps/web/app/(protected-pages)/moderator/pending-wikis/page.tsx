@@ -1,4 +1,5 @@
 import {createClient} from "@/lib/supabase/server"
+import Link from "next/link"
 
 export default async function PendingWikis() {
   const supabase = await createClient()
@@ -15,7 +16,9 @@ export default async function PendingWikis() {
       <h1>📄 Pending Wikis</h1>
       <ul>
         {wikis.map((wiki) => (
-          <li key={wiki.id}>{wiki.title}</li>
+          <li key={wiki.id}>
+            <Link href={`/moderator/pending-wikis/${wiki.id}`}>{wiki.title}</Link>
+          </li>
         ))}
       </ul>
     </main>
