@@ -1,11 +1,25 @@
 import {resetPasswordAction} from "@/actions/auth"
 import {FormMessage, Message} from "@/components/form-message"
 import {SubmitButton} from "@/components/submit-button"
+import {createClient} from "@/lib/supabase/server"
 import {Input} from "@workspace/ui/components/input"
 import {Label} from "@workspace/ui/components/label"
+import {redirect} from "next/navigation"
 
 export default async function ResetPassword(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams
+
+  const supabase = await createClient()
+
+  const {
+    data: {user},
+    error,
+  } = await supabase.auth.getUser()
+
+  if (error || !user) {
+    return redirect("/sign-in")
+  }
+
   return (
     <form className="flex flex-col w-full max-w-md p-4 gap-2 [&>input]:mb-4">
       <h1 className="text-2xl font-medium">Reset password</h1>

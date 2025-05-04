@@ -2,13 +2,26 @@ import {submitWikiAction} from "@/actions/wiki"
 import {FormMessage, Message} from "@/components/form-message"
 import {MarkdownField} from "@/components/md-editor"
 import {SubmitButton} from "@/components/submit-button"
+import {createClient} from "@/lib/supabase/server"
 import {Input} from "@workspace/ui/components/input"
 import {Label} from "@workspace/ui/components/label"
 import {ArrowLeft} from "lucide-react"
 import Link from "next/link"
+import {redirect} from "next/navigation"
 
 export default async function SubmitWikiPage(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams
+
+  const supabase = await createClient()
+
+  const {
+    data: {user},
+    error,
+  } = await supabase.auth.getUser()
+
+  if (error || !user) {
+    return redirect("/sign-in")
+  }
 
   return (
     <main className="flex flex-col gap-6 max-w-[65ch]">
