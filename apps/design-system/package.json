@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "next build ",
+    "build": "next build --turbopack",
     "build-storybook": "storybook build",
     "dev": "next dev --turbopack",
     "lint": "next lint",
