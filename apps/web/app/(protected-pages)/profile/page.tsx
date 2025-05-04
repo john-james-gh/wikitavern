@@ -15,15 +15,15 @@ export default async function Page() {
   const supabase = await createClient()
 
   const {
-    data: {session},
+    data: {user},
     error,
-  } = await supabase.auth.getSession()
+  } = await supabase.auth.getUser()
 
-  if (error || !session) {
+  if (error || !user) {
     return redirect("/sign-in")
   }
 
-  const {data} = await sanityFetch({query: PAGES_BY_USER_QUERY, params: {userId: session.user.id}})
+  const {data} = await sanityFetch({query: PAGES_BY_USER_QUERY, params: {userId: user.id}})
 
   return (
     <main className="flex flex-col prose dark:prose-invert">

@@ -4,9 +4,10 @@ import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 
 type HeaderProps = {
   user: User | null
+  userRole: string | null
 }
 
-export async function Header({user}: HeaderProps) {
+export async function Header({user, userRole}: HeaderProps) {
   if (!user) {
     return null
   }
@@ -16,6 +17,10 @@ export async function Header({user}: HeaderProps) {
       <SidebarTrigger className="size-4" />
       <Separator orientation="vertical" />
       <span>Hey, {user.email}!</span>
+      <Separator orientation="vertical" />
+      <span className="text-sm text-muted-foreground">
+        {userRole === "admin" ? "Admin" : userRole === "moderator" ? "Moderator" : "User"}
+      </span>
     </header>
   )
 }

@@ -40,11 +40,14 @@ const accountItems = [
   {emoji: "⚙️", label: "Settings", url: "/settings"},
 ]
 
+const moderatorItems = [{emoji: "🛠️", label: "Pending Wikis", url: "/moderator/pending-wikis"}]
+
 type AppSidebarProps = {
   user: User | null
+  userRole: string | null
 }
 
-export function AppSidebar({user}: AppSidebarProps) {
+export function AppSidebar({user, userRole}: AppSidebarProps) {
   const pathname = usePathname()
 
   return (
@@ -120,6 +123,30 @@ export function AppSidebar({user}: AppSidebarProps) {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {userRole && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Moderation</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {["admin", "moderator"].includes(userRole) && (
+                  <>
+                    {moderatorItems.map((item) => (
+                      <SidebarMenuItem key={item.label}>
+                        <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
+                          <Link href={item.url}>
+                            <span className="mr-2">{item.emoji}</span>
+                            <span>{item.label}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </>
+                )}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       <SidebarFooter>

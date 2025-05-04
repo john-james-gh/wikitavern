@@ -39,17 +39,27 @@ export default async function RootLayout({
 }>) {
   const supabase = await createClient()
 
+  let userRole = null
+
   const {
     data: {user},
   } = await supabase.auth.getUser()
+
+  if (user) {
+    const {data, error} = await supabase.from("user_roles").select("role").eq("user_id", user.id).single()
+    if (error) {
+      console.error("Error fetching user role:", {error})
+    }
+    userRole = data?.role
+  }
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <Providers>
-          <AppSidebar user={user} />
+          <AppSidebar user={user} userRole={userRole} />
           <div className="p-6 w-screen flex flex-col gap-6">
-            <Header user={user} />
+            <Header user={user} userRole={userRole} />
             {children}
           </div>
         </Providers>
