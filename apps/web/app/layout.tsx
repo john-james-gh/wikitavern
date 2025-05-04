@@ -4,7 +4,7 @@ import {Providers} from "@/components/providers"
 import {AppSidebar} from "@/components/app-sidebar"
 import {SanityLive} from "@/lib/sanity/live"
 import {API_MOCKING} from "@/config/environment"
-import {HeaderAuth} from "@/components/header-auth"
+import {Header} from "@/components/header"
 import {createClient} from "@/lib/supabase/server"
 
 const fontSans = Geist({
@@ -49,7 +49,7 @@ export default async function RootLayout({
         <Providers>
           <AppSidebar user={user} />
           <div className="p-6 flex flex-col gap-6">
-            <HeaderAuth />
+            <Header user={user} />
             {children}
           </div>
         </Providers>
