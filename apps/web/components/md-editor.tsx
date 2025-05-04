@@ -7,10 +7,10 @@ import {useTheme} from "next-themes"
 
 export function MarkdownField() {
   const [value, setValue] = useState<string | undefined>("**My New Wiki**")
-  const {resolvedTheme} = useTheme()
+  const {theme} = useTheme()
 
   return (
-    <div data-color-mode={resolvedTheme} className="w-full">
+    <div data-color-mode={theme} className="w-full">
       <MDEditor
         value={value}
         onChange={setValue}
