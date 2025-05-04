@@ -34,7 +34,9 @@ export const updateSession = async (request: NextRequest) => {
 
     // protected routes
     if (
-      (request.nextUrl.pathname.startsWith("/submit-wiki") ||
+      (request.nextUrl.pathname.startsWith("/admin") ||
+        request.nextUrl.pathname.startsWith("/moderator") ||
+        request.nextUrl.pathname.startsWith("/submit-wiki") ||
         request.nextUrl.pathname.startsWith("/reset-password") ||
         request.nextUrl.pathname.startsWith("/profile")) &&
       user.error
