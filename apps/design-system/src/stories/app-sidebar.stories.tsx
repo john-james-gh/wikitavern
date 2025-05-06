@@ -31,7 +31,7 @@ const meta: Meta<typeof AppSidebar> = {
           <SidebarTrigger />
           <section className="p-2">
             <h1>Main Content Area</h1>
-            <p>This is where your app's main content would go.</p>
+            <p>This is where your app main content would go.</p>
           </section>
         </main>
       </SidebarProvider>
