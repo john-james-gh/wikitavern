@@ -1,5 +1,6 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require("node:fs")
+const path = require("node:path")
+const {execSync} = require("node:child_process")
 const {Schema} = require("@sanity/schema")
 const {schemaTypes} = require("@workspace/cms-schema/schema-types")
 
@@ -13,3 +14,6 @@ export const blockContentType: any = ${JSON.stringify(blockType, null, 2)};
 `
 fs.writeFileSync(outPath, fileContents.trim())
 console.log("› Generated ", outPath)
+
+// Format it with Prettier
+execSync(`pnpm dlx prettier --write ${outPath}`, {stdio: "inherit"})
