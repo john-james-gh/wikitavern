@@ -8,15 +8,11 @@ type HeaderProps = {
 }
 
 export async function Header({user, userRole}: HeaderProps) {
-  if (!user) {
-    return null
-  }
-
   return (
     <header className="flex items-center gap-4">
       <SidebarTrigger className="size-4" />
       <Separator orientation="vertical" />
-      <span>Hey, {user.email}!</span>
+      <span>Hey, {user ? user.email : "there"}!</span>
       <Separator orientation="vertical" />
       <span className="text-sm text-muted-foreground">
         {userRole === "admin" ? "Admin" : userRole === "moderator" ? "Moderator" : "User"}

@@ -104,4 +104,37 @@ export const handlers: HttpHandler[] = [
     console.info("[MSW]: Intercepted FALLBACK")
     return HttpResponse.json({result: []})
   }),
+  http.get("https://enheqlnywwgrpouprkxz.supabase.co/auth/v1/user", () => {
+    console.info("[MSW]: Intercepted SUPABASE /auth/v1/user")
+    return HttpResponse.json({
+      id: "user-123",
+      aud: "authenticated",
+      role: "authenticated",
+      email: "mockuser@example.com",
+      email_confirmed_at: "2025-01-01T00:00:00Z",
+      phone: "",
+      confirmed_at: "2025-01-01T00:00:00Z",
+      last_sign_in_at: "2025-05-06T10:00:00Z",
+      app_metadata: {
+        provider: "email",
+      },
+      user_metadata: {},
+      identities: [],
+      created_at: "2025-01-01T00:00:00Z",
+      updated_at: "2025-05-06T10:00:00Z",
+    })
+  }),
+  http.get("https://enheqlnywwgrpouprkxz.supabase.co/rest/v1/user_roles", ({request}) => {
+    const url = new URL(request.url)
+    const select = url.searchParams.get("select")
+    const userId = url.searchParams.get("user_id")
+
+    if (select === "role" && userId === "eq.user-123") {
+      console.info("[MSW]: Intercepted SUPABASE /auth/v1/user_roles")
+      return HttpResponse.json({role: "admin"})
+    }
+
+    console.info("[MSW]: Intercepted SUPABASE /auth/v1/user_roles FALLBACK")
+    return HttpResponse.json(null)
+  }),
 ]
