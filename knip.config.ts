@@ -12,7 +12,6 @@ const config: KnipConfig = {
     },
     "apps/web": {
       ignoreDependencies: ["@workspace/eslint-config"],
-      ignoreUnresolved: ["@tailwindcss/postcss"],
     },
     "apps/design-system": {
       ignoreDependencies: ["@workspace/eslint-config"],
