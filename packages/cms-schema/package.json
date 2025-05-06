@@ -23,8 +23,8 @@
     "sanity": "^3.86.1"
   },
   "devDependencies": {
-    "@workspace/sanity-config": "workspace:*",
     "@workspace/eslint-config": "workspace:*",
+    "@workspace/sanity-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.25.1",
     "typescript": "latest"
