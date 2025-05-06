@@ -14,13 +14,13 @@
   "dependencies": {
     "@sanity/vision": "^3.86.1",
     "@workspace/cms-schema": "workspace:*",
-    "@workspace/sanity-config": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.86.1",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {
+    "@workspace/sanity-config": "workspace:*",
     "@sanity/eslint-config-studio": "^5.0.2",
     "@types/react": "^19",
     "@types/react-dom": "^19.1.3",

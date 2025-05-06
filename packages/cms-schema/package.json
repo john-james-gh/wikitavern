@@ -20,10 +20,10 @@
   },
   "dependencies": {
     "@sanity/icons": "^3.7.0",
-    "@workspace/sanity-config": "workspace:*",
     "sanity": "^3.86.1"
   },
   "devDependencies": {
+    "@workspace/sanity-config": "workspace:*",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.25.1",
