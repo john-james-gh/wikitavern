@@ -3,7 +3,6 @@ import "@workspace/ui/globals.css"
 import {Providers} from "@/components/providers"
 import {AppSidebar} from "@/components/app-sidebar"
 import {SanityLive} from "@/lib/sanity/live"
-import {API_MOCKING} from "@/config/environment"
 import {Header} from "@/components/header"
 import {createClient} from "@/lib/supabase/server"
 
@@ -23,13 +22,6 @@ export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "WikiTavern",
   description: "The fastest way to build apps with Next.js and Supabase",
-}
-
-if (API_MOCKING === "enabled") {
-  // We use dynamic import to load MSW only at runtime in dev.
-  // This prevents the mock code from being bundled into the production build.
-  console.warn("API mocking is enabled.")
-  import("../lib/msw")
 }
 
 export default async function RootLayout({
@@ -63,7 +55,7 @@ export default async function RootLayout({
             {children}
           </div>
         </Providers>
-        {API_MOCKING === "enabled" ? null : <SanityLive />}
+        <SanityLive />
       </body>
     </html>
   )

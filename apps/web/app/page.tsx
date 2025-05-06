@@ -6,7 +6,6 @@ import Link from "next/link"
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {
     title: `Home | WikiTavern`,
-    metadataBase: new URL("https://acme.com"),
   }
 
   return metadata
