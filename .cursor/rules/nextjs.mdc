@@ -3,7 +3,7 @@ description:
 globs: 
 alwaysApply: true
 ---
-Prefer Next.js App Router with SSR and Server Components. Use Client Components only when necessary (e.g. for interactivity). Don’t force SSR if it complicates the codebase.
+Prefer Next.js (v15) App Router with SSR and Server Components. Use Client Components only when necessary (e.g. for interactivity). Don’t force SSR if it complicates the codebase.
 
 Comment non-obvious logic and edge cases. Write as if someone new to the project will read your code next week.
 

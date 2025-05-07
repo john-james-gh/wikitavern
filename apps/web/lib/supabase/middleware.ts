@@ -1,4 +1,4 @@
-import {SUPABASE_ANON_KEY, SUPABASE_URL} from "@/config/environment"
+import {SupabaseConfig} from "@/config/environment"
 import {createServerClient} from "@supabase/ssr"
 import {type NextRequest, NextResponse} from "next/server"
 
@@ -13,7 +13,7 @@ export const updateSession = async (request: NextRequest) => {
       },
     })
 
-    const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    const supabase = createServerClient(SupabaseConfig.url, SupabaseConfig.anonKey, {
       cookies: {
         getAll() {
           return request.cookies.getAll()

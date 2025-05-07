@@ -1,6 +1,5 @@
-import type {KnipConfig} from "knip"
-
-const config: KnipConfig = {
+/** @type {import('knip').KnipConfig} */
+const config = {
   include: ["dependencies", "devDependencies"],
   ignoreWorkspaces: ["packages/eslint-config", "packages/typescript-config", "packages/sanity-config"],
   workspaces: {

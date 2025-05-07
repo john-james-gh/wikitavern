@@ -26,5 +26,3 @@ WikiTavern is a modern, streamlined alternative to ad-riddled fan wikis like Fan
 - `apps/` – Web apps (Next.js, Sanity CMS, Storybook)
 - `packages/` – Shared code (config, Sanity schemas, shadcn/ui UI components)
 - `.cursor/rules/` – Code quality & convention rules (enforced via Cursor AI)
-
----

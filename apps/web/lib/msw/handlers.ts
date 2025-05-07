@@ -1,6 +1,6 @@
 import {http, HttpResponse, type HttpHandler} from "msw"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
-import {SANITY_PROJECT_ID} from "@/config/environment"
+import {SanityConfig} from "@/config/environment"
 import type {
   FEATURED_PAGES_QUERYResult,
   RECENTLY_UPDATED_PAGES_QUERYResult,
@@ -77,7 +77,7 @@ const normalizeSlugParam = (s: string | null) => {
 }
 
 export const handlers: HttpHandler[] = [
-  http.get(`https://${SANITY_PROJECT_ID}.apicdn.sanity.io/vX/data/query/:dataset`, ({request}) => {
+  http.get(`https://${SanityConfig.projectId}.apicdn.sanity.io/vX/data/query/:dataset`, ({request}) => {
     const url = new URL(request.url)
     const queryParam = normalizeQueryParam(url.searchParams.get("query"))
     const slugParam = normalizeSlugParam(url.searchParams.get("$slug"))
