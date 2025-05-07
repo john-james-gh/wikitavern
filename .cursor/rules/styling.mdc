@@ -1,0 +1,8 @@
+---
+description: 
+globs: apps/web/**/*.tsx,packages/ui/**/*.tsx
+alwaysApply: false
+---
+Use shadcn/ui components where available. Avoid building UIs from scratch unless justified.
+
+Stick to Tailwind CSS v4 utility classes. Avoid custom SCSS or external UI kits.

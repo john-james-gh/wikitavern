@@ -1,0 +1,12 @@
+---
+description: 
+globs: apps/web/**/*.test.tsx,apps/web/**/*.test.ts
+alwaysApply: false
+---
+Use Vitest for unit and  tests. Do not use Jest.
+
+Use Playwright for E2E tests. Cypress is not supported.
+
+Tests must live next to the code they cover (*.test.tsx). Avoid __tests__ folders.
+
+Keep tests minimal, fast, and focused. Mock external services.

@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Do not add libraries without a documented use case. All deps must bring measurable value.

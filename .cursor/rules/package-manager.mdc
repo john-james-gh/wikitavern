@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Use pnpm as the package manager across all projects. Do not use npm or yarn.

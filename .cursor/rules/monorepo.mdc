@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Use pnpm workspaces to manage dependencies. Do not use npm link, yarn workspaces, or local file: links.
+
+Cross-package imports must use @workspace/* imports.
+
+Use Unix-style CLI commands (Linux/macOS). Do not include or rely on Windows-only commands or paths (e.g., dir, .bat, C:\\). Scripts must run in Unix-like shells (e.g., Bash, Zsh).
+
+When adding new dependencies, install them in the specific package or app that uses them.
+Do not install shared or unrelated deps in the root package.json.
+This repo follows the Turborepo-style scoped dependency model.
