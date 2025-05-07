@@ -1,9 +1,11 @@
 import {defineConfig} from "sanity"
 import {schemaTypes} from "./dist/index.js"
-import {config} from "@workspace/sanity-config/base"
+import {prodConfig} from "@workspace/sanity-config/prod"
+import {baseConfig} from "@workspace/sanity-config/base"
 
 export default defineConfig({
-  ...config,
+  ...baseConfig,
+  ...prodConfig,
   schema: {
     types: schemaTypes,
   },

@@ -4,7 +4,6 @@ export default defineCliConfig({
   studioHost: "wikitavern",
   api: {
     projectId: "j9ou61ca",
-    dataset: "production",
   },
   /**
    * Enable auto-updates for studios.
