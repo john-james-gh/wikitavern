@@ -1,6 +1,0 @@
----
-description: 
-globs: apps/web/**/*.tsx,apps/web/**/*.ts
-alwaysApply: false
----
-Prefer Next.js App Router with SSR and Server Components. Use Client Components only when necessary (e.g. for interactivity). Don’t force SSR if it complicates the codebase.

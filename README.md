@@ -1,31 +1,30 @@
-# shadcn/ui monorepo template
+# WikiTavern ⚔️📚
 
-This template is for creating a monorepo with shadcn/ui.
+_A smarter, faster Fandom for the next generation._
 
-## Usage
+## What is it?
 
-```bash
-pnpm dlx shadcn@latest init
-```
+WikiTavern is a modern, streamlined alternative to ad-riddled fan wikis like Fandom. It’s built to be fast, clean, and community-curated — with zero ads and a contributor-first workflow.
 
-## Adding components
+## Core Philosophy
 
-To add components to your app, run the following command at the root of your `web` app:
+- 🚫 100% ad-free
+- 🧠 Community-first, not profit-first
+- 💸 Donation-supported only
+- ✍️ No messy wiki markup — just clean editorial flow
 
-```bash
-pnpm dlx shadcn@latest add button -c apps/web
-```
+## Stack
 
-This will place the ui components in the `packages/ui/src/components` directory.
+- **Next.js App Router (on Vercel)** – for hybrid static + dynamic pages
+- **Sanity CMS** – for editorial content and submission workflows
+- **Supabase** – for Auth, user submissions, moderation
+- **Tailwind + shadcn/ui** – for a responsive, clean UI
+- **pnpm + Turbo + Vitest + Playwright** – for a modern monorepo setup
 
-## Tailwind
+## Repo Structure
 
-Your `tailwind.config.ts` and `globals.css` are already set up to use the components from the `ui` package.
+- `apps/` – Web apps (Next.js, Sanity CMS, Storybook)
+- `packages/` – Shared code (config, Sanity schemas, shadcn/ui UI components)
+- `.cursor/rules/` – Code quality & convention rules (enforced via Cursor AI)
 
-## Using components
-
-To use the components in your app, import them from the `ui` package.
-
-```tsx
-import {Button} from "@workspace/ui/components/button"
-```
+---

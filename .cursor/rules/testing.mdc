@@ -1,7 +1,7 @@
 ---
 description: 
-globs: apps/web/**/*.test.tsx,apps/web/**/*.test.ts
-alwaysApply: false
+globs: 
+alwaysApply: true
 ---
 Use Vitest for unit and  tests. Do not use Jest.
 

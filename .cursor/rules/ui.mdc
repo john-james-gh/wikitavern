@@ -1,8 +1,14 @@
 ---
 description: 
-globs: apps/web/**/*.tsx,packages/ui/**/*.tsx
-alwaysApply: false
+globs: 
+alwaysApply: true
 ---
 Use shadcn/ui components where available. Avoid building UIs from scratch unless justified.
+
+To add shadcn/ui components (e.g. button) to apps/web app, run the following command from the monorepo root.
+
+```bash
+pnpm dlx shadcn@latest add button -c apps/web
+```
 
 Stick to Tailwind CSS v4 utility classes. Avoid custom SCSS or external UI kits.
