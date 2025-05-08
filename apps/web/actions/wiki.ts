@@ -1,21 +1,12 @@
 "use server"
 
-import {htmlToBlocks} from "@portabletext/block-tools"
 import DOMPurify from "isomorphic-dompurify"
-import {JSDOM} from "jsdom"
-import {micromark} from "micromark"
 
 import {blockContentType} from "@/lib/sanity/block-content-type"
 import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
 import {createClient} from "@/lib/supabase/server"
+import {markdownToBlocks} from "@/lib/utils/markdown-to-blocks"
 import type {Json} from "@/types/supabase"
-
-function markdownToBlocks(md: string) {
-  const html = micromark(md)
-  return htmlToBlocks(html, blockContentType, {
-    parseHtml: (htmlString) => new JSDOM(htmlString).window.document,
-  })
-}
 
 export const submitWikiAction = async (formData: FormData) => {
   const supabase = await createClient()
@@ -37,7 +28,7 @@ export const submitWikiAction = async (formData: FormData) => {
   }
 
   const safeContent = DOMPurify.sanitize(content)
-  const blocks = markdownToBlocks(safeContent)
+  const blocks = markdownToBlocks(safeContent, blockContentType)
   const contentJson = blocks as unknown as Json
 
   const {error} = await supabase.from("wiki_submissions").insert({
