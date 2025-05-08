@@ -1,8 +1,9 @@
-import Page, {generateMetadata} from "./page"
 import {renderToString} from "react-dom/server"
 import {describe, expect, it, vi} from "vitest"
 
 import {sanityFetch} from "@/lib/sanity/live"
+
+import Page, {generateMetadata} from "./page"
 
 vi.mock("@/lib/sanity/live", () => ({
   sanityFetch: vi.fn(),

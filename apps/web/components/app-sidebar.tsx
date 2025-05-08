@@ -1,6 +1,5 @@
 "use client"
 
-import {ThemeSwitch} from "./theme-switch"
 import type {User} from "@supabase/supabase-js"
 import Link from "next/link"
 import {usePathname} from "next/navigation"
@@ -18,6 +17,8 @@ import {
 } from "@workspace/ui/components/sidebar"
 
 import type {Database} from "@/types/supabase"
+
+import {ThemeSwitch} from "./theme-switch"
 
 const exploreItems = [
   {emoji: "🏠", label: "Home", url: "/"},

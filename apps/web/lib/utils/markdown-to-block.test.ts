@@ -1,8 +1,9 @@
-import {markdownToBlocks} from "./markdown-to-blocks"
 import type {TypedObject} from "@portabletext/block-tools"
 import {describe, expect, it} from "vitest"
 
 import {blockContentType} from "@/lib/sanity/block-content-type"
+
+import {markdownToBlocks} from "./markdown-to-blocks"
 
 interface Block extends TypedObject {
   _type: "block"

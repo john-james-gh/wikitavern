@@ -1,9 +1,10 @@
-import {ThemeSwitch} from "./theme-switch"
 import {cleanup, render, screen} from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import {ThemeProvider} from "next-themes"
 import React from "react"
 import {afterEach, expect, test, vi} from "vitest"
+
+import {ThemeSwitch} from "./theme-switch"
 
 // Mock next-themes
 const mockSetTheme = vi.fn()
