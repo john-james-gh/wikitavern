@@ -24,7 +24,7 @@ export default async function SubmitWikiPage(props: {searchParams: Promise<Messa
   }
 
   return (
-    <main className="flex flex-col gap-6 max-w-[65ch]">
+    <main className="flex max-w-[65ch] flex-col gap-6">
       <nav>
         <Link href="/" className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
@@ -40,16 +40,16 @@ export default async function SubmitWikiPage(props: {searchParams: Promise<Messa
         </p>
       </section>
       <form className="flex flex-col gap-4">
-        <div className="max-w-md flex flex-col gap-2">
+        <div className="flex max-w-md flex-col gap-2">
           <Label htmlFor="title">Title</Label>
-          <p className="text-sm prose dark:prose-invert">
+          <p className="prose dark:prose-invert text-sm">
             This is the title of the Wiki. It should be descriptive and concise.
           </p>
           <Input name="title" />
         </div>
-        <div className="max-w-md flex flex-col gap-2">
+        <div className="flex max-w-md flex-col gap-2">
           <Label htmlFor="slug">Slug</Label>
-          <p className="text-sm prose dark:prose-invert">
+          <p className="prose dark:prose-invert text-sm">
             Must be unique. Look up existing Wikis to ensure you&apos;re not creating a duplicate.
           </p>
           <Input name="slug" />
@@ -57,7 +57,7 @@ export default async function SubmitWikiPage(props: {searchParams: Promise<Messa
 
         <div className="flex flex-col gap-2">
           <Label htmlFor="content">Content</Label>
-          <p className="text-sm prose dark:prose-invert">
+          <p className="prose dark:prose-invert text-sm">
             This is the content of the Wiki. You must use Markdown to format your text. Type your content in
             the left pane and see the preview on the right.{" "}
             <a
@@ -69,7 +69,7 @@ export default async function SubmitWikiPage(props: {searchParams: Promise<Messa
               Learn more about Markdown
             </a>
           </p>
-          <p className="text-sm prose dark:prose-invert">
+          <p className="prose dark:prose-invert text-sm">
             Enter full-screen mode in the top right corner of the editor.
           </p>
           <MarkdownField />

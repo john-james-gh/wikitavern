@@ -50,7 +50,7 @@ export default async function RootLayout({
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <Providers>
           <AppSidebar user={user} userRole={userRole} />
-          <div className="p-6 w-screen flex flex-col gap-6">
+          <div className="flex w-screen flex-col gap-6 p-6">
             <Header user={user} userRole={userRole} />
             {children}
           </div>

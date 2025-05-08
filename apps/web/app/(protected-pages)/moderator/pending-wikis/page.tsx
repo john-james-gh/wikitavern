@@ -12,7 +12,7 @@ export default async function PendingWikis() {
   }
 
   return (
-    <main className="flex flex-col prose dark:prose-invert">
+    <main className="prose dark:prose-invert flex flex-col">
       <h1>📄 Pending Wikis</h1>
       <ul>
         {wikis.map((wiki) => (

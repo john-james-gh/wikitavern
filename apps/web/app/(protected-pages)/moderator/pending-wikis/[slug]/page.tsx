@@ -24,7 +24,7 @@ export default async function Page({params}: Props) {
   }
 
   return (
-    <main className="flex flex-col prose dark:prose-invert">
+    <main className="prose dark:prose-invert flex flex-col">
       <h1>🧑‍⚖️ Review Pending Wiki</h1>
       <h2>{wiki.title}</h2>
       {wiki.content && <PortableText value={wiki.content} components={components} />}

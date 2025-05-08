@@ -26,7 +26,7 @@ export default async function Page() {
   const {data} = await sanityFetch({query: PAGES_BY_USER_QUERY, params: {userId: user.id}})
 
   return (
-    <main className="flex flex-col prose dark:prose-invert">
+    <main className="prose dark:prose-invert flex flex-col">
       <h1>👤 Your WikiTavern Profile</h1>
       <p>
         <strong>Wikitavern</strong> is a clean, ad-free, fan-powered wiki platform. Built for contributors who

@@ -1,4 +1,4 @@
-import { z } from "zod"
+import {z} from "zod"
 
 const envSchema = z.object({
   // Sanity configuration
@@ -9,9 +9,11 @@ const envSchema = z.object({
 
   // Supabase configuration
   NEXT_PUBLIC_SUPABASE_URL: z.string().default("https://enheqlnywwgrpouprkxz.supabase.co"),
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().default(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVuaGVxbG55d3dncnBvdXBya3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYyODU1NTYsImV4cCI6MjA2MTg2MTU1Nn0.-lQg4SMLycMJ3dGxuiITliYl56ZxWRkamAAJL7UVTf8"
-  ),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z
+    .string()
+    .default(
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVuaGVxbG55d3dncnBvdXBya3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYyODU1NTYsImV4cCI6MjA2MTg2MTU1Nn0.-lQg4SMLycMJ3dGxuiITliYl56ZxWRkamAAJL7UVTf8",
+    ),
 
   // Node environment
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),

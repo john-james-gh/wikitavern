@@ -14,7 +14,7 @@ export async function Header({user, userRole}: HeaderProps) {
       <Separator orientation="vertical" />
       <span>Hey, {user ? user.email : "there"}!</span>
       <Separator orientation="vertical" />
-      <span className="text-sm text-muted-foreground">
+      <span className="text-muted-foreground text-sm">
         {userRole === "admin" ? "Admin" : userRole === "moderator" ? "Moderator" : "User"}
       </span>
     </header>
