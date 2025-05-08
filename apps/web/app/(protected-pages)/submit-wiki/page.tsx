@@ -1,4 +1,3 @@
-import {ArrowLeft} from "lucide-react"
 import Link from "next/link"
 import {redirect} from "next/navigation"
 
@@ -27,12 +26,6 @@ export default async function SubmitWikiPage(props: {searchParams: Promise<Messa
 
   return (
     <main className="flex max-w-[65ch] flex-col gap-6">
-      <nav>
-        <Link href="/" className="flex items-center gap-2">
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </Link>
-      </nav>
       <section className="prose dark:prose-invert">
         <h1>✍️ Submit Your Wiki</h1>
         <p>

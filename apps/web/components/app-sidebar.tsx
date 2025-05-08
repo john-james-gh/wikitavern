@@ -44,7 +44,10 @@ const accountItems = [
   {emoji: "⚙️", label: "Settings", url: "/settings"},
 ]
 
-const moderatorItems = [{emoji: "🛠️", label: "Pending Wikis", url: "/moderator/pending-wikis"}]
+const moderatorItems = [
+  {emoji: "🔍", label: "Dashboard", url: "/moderator"},
+  {emoji: "🛠️", label: "Pending Wikis", url: "/moderator/pending-wikis"},
+]
 
 const adminItems = [
   {

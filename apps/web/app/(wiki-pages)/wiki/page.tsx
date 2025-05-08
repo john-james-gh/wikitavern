@@ -1,4 +1,3 @@
-import {ArrowLeft} from "lucide-react"
 import Link from "next/link"
 
 import {sanityFetch} from "@/lib/sanity/live"
@@ -9,13 +8,6 @@ export default async function AllWikisPage() {
 
   return (
     <main className="flex flex-col gap-6">
-      <nav>
-        <Link href="/" className="flex items-center gap-2">
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </Link>
-      </nav>
-
       <section className="prose dark:prose-invert">
         <h1>📚 All Wikis</h1>
         {pages.length ? (
