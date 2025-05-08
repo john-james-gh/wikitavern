@@ -10,18 +10,22 @@
   "prettier": {
     "bracketSpacing": false,
     "printWidth": 110,
-    "semi": false
+    "semi": false,
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
+    "@vitest/coverage-v8": "latest",
     "@workspace/typescript-config": "workspace:*",
     "knip": "^5.52.0",
     "prettier": "^3.5.1",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "sort-package-json": "^3.0.0",
     "turbo": "^2.5.2",
     "typescript": "5.8.3",
-    "vitest": "latest",
-    "@vitest/coverage-v8": "latest"
+    "vitest": "latest"
   },
   "packageManager": "pnpm@10.10.0",
   "engines": {
