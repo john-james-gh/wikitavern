@@ -11,11 +11,19 @@
     "bracketSpacing": false,
     "printWidth": 110,
     "semi": false,
+    "importOrder": [
+      "^@workspace/(.*)$",
+      "^@/(.*)$"
+    ],
+    "importOrderSortSpecifiers": true,
+    "importOrderSeparation": true,
     "plugins": [
-      "prettier-plugin-tailwindcss"
+      "prettier-plugin-tailwindcss",
+      "@trivago/prettier-plugin-sort-imports"
     ]
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.15.3",
     "@vitest/coverage-v8": "latest",
     "@workspace/typescript-config": "workspace:*",

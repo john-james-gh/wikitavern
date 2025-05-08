@@ -1,5 +1,6 @@
-import {createClient} from "@/lib/supabase/server"
 import Link from "next/link"
+
+import {createClient} from "@/lib/supabase/server"
 
 export default async function PendingWikis() {
   const supabase = await createClient()

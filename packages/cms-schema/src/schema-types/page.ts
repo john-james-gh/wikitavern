@@ -1,5 +1,5 @@
-import {defineType, defineField} from "sanity"
 import {DocumentTextIcon} from "@sanity/icons"
+import {defineField, defineType} from "sanity"
 
 export const page = defineType({
   name: "page",

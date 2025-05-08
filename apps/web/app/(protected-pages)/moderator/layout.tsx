@@ -1,6 +1,7 @@
+import {PropsWithChildren} from "react"
+
 import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
 import {createClient} from "@/lib/supabase/server"
-import {PropsWithChildren} from "react"
 
 export default async function ModeratorLayout({children}: Required<PropsWithChildren>) {
   const supabase = await createClient()

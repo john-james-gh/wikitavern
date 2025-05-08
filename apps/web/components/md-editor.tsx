@@ -1,9 +1,9 @@
 "use client"
 
-import rehypeSanitize from "rehype-sanitize"
-import {useState} from "react"
 import MDEditor from "@uiw/react-md-editor"
 import {useTheme} from "next-themes"
+import {useState} from "react"
+import rehypeSanitize from "rehype-sanitize"
 
 export function MarkdownField() {
   const [value, setValue] = useState<string | undefined>("**My New Wiki**")

@@ -1,10 +1,12 @@
+import Link from "next/link"
+import {redirect} from "next/navigation"
+
+import {Button} from "@workspace/ui/components/button"
+
 import {signOutAction} from "@/actions/auth"
 import {sanityFetch} from "@/lib/sanity/live"
 import {PAGES_BY_USER_QUERY} from "@/lib/sanity/queries"
 import {createClient} from "@/lib/supabase/server"
-import {Button} from "@workspace/ui/components/button"
-import Link from "next/link"
-import {redirect} from "next/navigation"
 
 export const metadata = {
   title: "Profile | WikiTavern",

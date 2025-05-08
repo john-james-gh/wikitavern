@@ -1,8 +1,9 @@
-import {sanityFetch} from "@/lib/sanity/live"
-import {PAGE_QUERY} from "@/lib/sanity/queries"
 import {PortableText} from "next-sanity"
-import {components} from "@/lib/sanity/portable-text-components"
 import {notFound} from "next/navigation"
+
+import {sanityFetch} from "@/lib/sanity/live"
+import {components} from "@/lib/sanity/portable-text-components"
+import {PAGE_QUERY} from "@/lib/sanity/queries"
 
 export default async function Page() {
   const {data} = await sanityFetch({query: PAGE_QUERY, params: {slug: "contribute"}})

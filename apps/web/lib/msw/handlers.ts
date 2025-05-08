@@ -1,10 +1,11 @@
-import {http, HttpResponse, type HttpHandler} from "msw"
-import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
+import {type HttpHandler, HttpResponse, http} from "msw"
+
 import {SanityConfig} from "@/config/environment"
+import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 import type {
   FEATURED_PAGES_QUERYResult,
-  RECENTLY_UPDATED_PAGES_QUERYResult,
   PAGE_QUERYResult,
+  RECENTLY_UPDATED_PAGES_QUERYResult,
 } from "@/types/sanity"
 
 const featuredMock: FEATURED_PAGES_QUERYResult = [

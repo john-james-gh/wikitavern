@@ -1,14 +1,15 @@
 "use client"
 
-import * as React from "react"
 import {useTheme} from "next-themes"
+import * as React from "react"
+
+import {Button} from "@workspace/ui/components/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu"
-import {Button} from "@workspace/ui/components/button"
 
 export function ThemeSwitch() {
   const {setTheme} = useTheme()

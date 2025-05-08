@@ -1,7 +1,8 @@
-import {components} from "@/lib/sanity/portable-text-components"
-import {createClient} from "@/lib/supabase/server"
 import type {TypedObject} from "@portabletext/block-tools"
 import {PortableText} from "next-sanity"
+
+import {components} from "@/lib/sanity/portable-text-components"
+import {createClient} from "@/lib/supabase/server"
 
 type Props = {
   params: Promise<{slug: string}>

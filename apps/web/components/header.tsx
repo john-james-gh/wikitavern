@@ -1,4 +1,5 @@
 import {User} from "@supabase/supabase-js"
+
 import {Separator} from "@workspace/ui/components/separator"
 import {SidebarTrigger} from "@workspace/ui/components/sidebar"
 

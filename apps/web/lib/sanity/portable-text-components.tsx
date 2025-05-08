@@ -1,6 +1,6 @@
-import Image from "next/image"
-import {PortableTextComponents} from "next-sanity"
 import {urlFor} from "./image"
+import {PortableTextComponents} from "next-sanity"
+import Image from "next/image"
 
 export const components: PortableTextComponents = {
   types: {

@@ -1,6 +1,9 @@
+import RootLayout, {metadata} from "./layout"
 import React from "react"
-import {describe, it, expect, vi, beforeEach} from "vitest"
 import {renderToString} from "react-dom/server"
+import {beforeEach, describe, expect, it, vi} from "vitest"
+
+import {createClient} from "@/lib/supabase/server"
 
 // mock fonts
 vi.mock("next/font/google", () => ({
@@ -24,9 +27,6 @@ vi.mock("@/lib/sanity/live", () => ({
 vi.mock("@/lib/supabase/server", () => ({
   createClient: vi.fn(),
 }))
-
-import RootLayout, {metadata} from "./layout"
-import {createClient} from "@/lib/supabase/server"
 
 describe("RootLayout & metadata", () => {
   const fakeClient = {

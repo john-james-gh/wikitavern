@@ -1,12 +1,13 @@
-import {sanityFetch} from "@/lib/sanity/live"
-import {components} from "@/lib/sanity/portable-text-components"
-import {PAGE_QUERY} from "@/lib/sanity/queries"
 import {ArrowLeft} from "lucide-react"
 import type {Metadata} from "next"
 import {PortableText} from "next-sanity"
 import Link from "next/link"
 import {notFound} from "next/navigation"
 import {Article, WithContext} from "schema-dts"
+
+import {sanityFetch} from "@/lib/sanity/live"
+import {components} from "@/lib/sanity/portable-text-components"
+import {PAGE_QUERY} from "@/lib/sanity/queries"
 
 type Props = {
   params: Promise<{slug: string}>

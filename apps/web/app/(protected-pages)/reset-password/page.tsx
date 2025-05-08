@@ -1,10 +1,12 @@
+import {redirect} from "next/navigation"
+
+import {Input} from "@workspace/ui/components/input"
+import {Label} from "@workspace/ui/components/label"
+
 import {resetPasswordAction} from "@/actions/auth"
 import {FormMessage, Message} from "@/components/form-message"
 import {SubmitButton} from "@/components/submit-button"
 import {createClient} from "@/lib/supabase/server"
-import {Input} from "@workspace/ui/components/input"
-import {Label} from "@workspace/ui/components/label"
-import {redirect} from "next/navigation"
 
 export default async function ResetPassword(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams

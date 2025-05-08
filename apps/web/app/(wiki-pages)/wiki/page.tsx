@@ -1,7 +1,8 @@
+import {ArrowLeft} from "lucide-react"
+import Link from "next/link"
+
 import {sanityFetch} from "@/lib/sanity/live"
 import {PAGES_SLUGS_QUERY} from "@/lib/sanity/queries"
-import Link from "next/link"
-import {ArrowLeft} from "lucide-react"
 
 export default async function AllWikisPage() {
   const {data: pages} = await sanityFetch({query: PAGES_SLUGS_QUERY})

@@ -1,6 +1,7 @@
-import {SupabaseConfig} from "@/config/environment"
 import {createServerClient} from "@supabase/ssr"
 import {type NextRequest, NextResponse} from "next/server"
+
+import {SupabaseConfig} from "@/config/environment"
 
 export const updateSession = async (request: NextRequest) => {
   // This `try/catch` block is only here for the interactive tutorial.

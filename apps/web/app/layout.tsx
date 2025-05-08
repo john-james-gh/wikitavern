@@ -1,9 +1,11 @@
 import {Geist, Geist_Mono} from "next/font/google"
+
 import "@workspace/ui/globals.css"
-import {Providers} from "@/components/providers"
+
 import {AppSidebar} from "@/components/app-sidebar"
-import {SanityLive} from "@/lib/sanity/live"
 import {Header} from "@/components/header"
+import {Providers} from "@/components/providers"
+import {SanityLive} from "@/lib/sanity/live"
 import {createClient} from "@/lib/supabase/server"
 
 const fontSans = Geist({

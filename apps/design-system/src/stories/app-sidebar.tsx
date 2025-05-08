@@ -1,3 +1,6 @@
+import {Home, Inbox} from "lucide-react"
+import Link from "next/link"
+
 import {
   Sidebar,
   SidebarContent,
@@ -8,9 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar"
-
-import {Home, Inbox} from "lucide-react"
-import Link from "next/link"
 
 export type SidebarItem = {
   title: string

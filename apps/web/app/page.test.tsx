@@ -1,6 +1,7 @@
-import {describe, it, expect, vi} from "vitest"
-import {renderToString} from "react-dom/server"
 import Page, {generateMetadata} from "./page"
+import {renderToString} from "react-dom/server"
+import {describe, expect, it, vi} from "vitest"
+
 import {sanityFetch} from "@/lib/sanity/live"
 
 vi.mock("@/lib/sanity/live", () => ({

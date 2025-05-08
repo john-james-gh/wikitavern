@@ -1,13 +1,15 @@
+import {ArrowLeft} from "lucide-react"
+import Link from "next/link"
+import {redirect} from "next/navigation"
+
+import {Input} from "@workspace/ui/components/input"
+import {Label} from "@workspace/ui/components/label"
+
 import {submitWikiAction} from "@/actions/wiki"
 import {FormMessage, Message} from "@/components/form-message"
 import {MarkdownField} from "@/components/md-editor"
 import {SubmitButton} from "@/components/submit-button"
 import {createClient} from "@/lib/supabase/server"
-import {Input} from "@workspace/ui/components/input"
-import {Label} from "@workspace/ui/components/label"
-import {ArrowLeft} from "lucide-react"
-import Link from "next/link"
-import {redirect} from "next/navigation"
 
 export default async function SubmitWikiPage(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams

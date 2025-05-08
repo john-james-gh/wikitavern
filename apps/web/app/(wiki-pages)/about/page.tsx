@@ -1,9 +1,10 @@
-import {sanityFetch} from "@/lib/sanity/live"
-import {PAGE_QUERY} from "@/lib/sanity/queries"
-import {PortableText} from "next-sanity"
-import {components} from "@/lib/sanity/portable-text-components"
-import {notFound} from "next/navigation"
 import type {Metadata} from "next"
+import {PortableText} from "next-sanity"
+import {notFound} from "next/navigation"
+
+import {sanityFetch} from "@/lib/sanity/live"
+import {components} from "@/lib/sanity/portable-text-components"
+import {PAGE_QUERY} from "@/lib/sanity/queries"
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {

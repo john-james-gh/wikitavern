@@ -1,7 +1,8 @@
-import {sanityFetch} from "@/lib/sanity/live"
-import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 import type {Metadata} from "next"
 import Link from "next/link"
+
+import {sanityFetch} from "@/lib/sanity/live"
+import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {

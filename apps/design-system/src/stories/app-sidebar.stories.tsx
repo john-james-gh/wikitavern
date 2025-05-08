@@ -1,7 +1,7 @@
+import {AppSidebar, type SidebarGroupData} from "./app-sidebar"
 import type {Meta, StoryObj} from "@storybook/react"
 import {Calendar, Home, Inbox, Search, Settings} from "lucide-react"
 
-import {AppSidebar, type SidebarGroupData} from "./app-sidebar"
 import {SidebarProvider, SidebarTrigger} from "@workspace/ui/components/sidebar"
 
 const meta: Meta<typeof AppSidebar> = {
