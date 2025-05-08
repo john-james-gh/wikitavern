@@ -17,6 +17,8 @@ import {
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar"
 
+import type {Database} from "@/types/supabase"
+
 const exploreItems = [
   {emoji: "🏠", label: "Home", url: "/"},
   {emoji: "📄", label: "All Wikis", url: "/wiki"},
@@ -53,7 +55,7 @@ const adminItems = [
 
 type AppSidebarProps = {
   user: User | null
-  userRole: string | null
+  userRole: Database["public"]["Enums"]["user_role"] | null | undefined
 }
 
 export function AppSidebar({user, userRole}: AppSidebarProps) {
