@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./base": "./base.js"
+    "./base": "./base.js",
+    "./prod": "./prod.js",
+    "./test": "./test.js"
   },
   "dependencies": {
     "sanity": "^3.86.1"

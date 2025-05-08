@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/extract-block-content-type.cjs",
+    "prebuild": "node scripts/extract-block-content-type.mjs",
     "build": "next build",
     "dev": "next dev --turbopack",
     "lint": "next lint",
