@@ -7,6 +7,7 @@ import {createClient} from "@/lib/supabase/server"
 import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
 import {JSDOM} from "jsdom"
 import DOMPurify from "isomorphic-dompurify"
+import type {Json} from "@/types/supabase"
 
 function markdownToBlocks(md: string) {
   const html = micromark(md)
@@ -36,11 +37,12 @@ export const submitWikiAction = async (formData: FormData) => {
 
   const safeContent = DOMPurify.sanitize(content)
   const blocks = markdownToBlocks(safeContent)
+  const contentJson = blocks as unknown as Json
 
   const {error} = await supabase.from("wiki_submissions").insert({
     title,
     slug,
-    content: blocks,
+    content: contentJson,
     submitted_by: user.id,
     submitted_username: user.user_metadata.username,
   })

@@ -1,5 +1,6 @@
 import {components} from "@/lib/sanity/portable-text-components"
 import {createClient} from "@/lib/supabase/server"
+import type {TypedObject} from "@portabletext/block-tools"
 import {PortableText} from "next-sanity"
 
 type Props = {
@@ -27,7 +28,9 @@ export default async function Page({params}: Props) {
     <main className="prose dark:prose-invert flex flex-col">
       <h1>🧑‍⚖️ Review Pending Wiki</h1>
       <h2>{wiki.title}</h2>
-      {wiki.content && <PortableText value={wiki.content} components={components} />}
+      {wiki.content && (
+        <PortableText value={wiki.content as unknown as TypedObject[]} components={components} />
+      )}
     </main>
   )
 }
