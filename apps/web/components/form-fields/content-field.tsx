@@ -15,7 +15,7 @@ import {
 } from "@workspace/ui/components/form"
 import {Skeleton} from "@workspace/ui/components/skeleton"
 
-import type {FormData} from "../wiki-metadata-form"
+import type {FormData} from "../wiki-content-form"
 
 interface ContentFieldProps {
   control: Control<FormData>
