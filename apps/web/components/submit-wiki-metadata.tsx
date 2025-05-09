@@ -33,7 +33,7 @@ import {Separator} from "@workspace/ui/components/separator"
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@workspace/ui/components/tabs"
 import {cn} from "@workspace/ui/lib/utils"
 
-import {useWikiStore} from "@/app/(protected-pages)/submit-wiki/layout"
+import {useWikiStore} from "@/stores/wiki"
 import {CATEGORIES_QUERYResult, TAGS_QUERYResult} from "@/types/sanity"
 
 const formSchema = z

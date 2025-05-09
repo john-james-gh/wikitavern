@@ -24,7 +24,7 @@ import {
 import {Separator} from "@workspace/ui/components/separator"
 import {Skeleton} from "@workspace/ui/components/skeleton"
 
-import {useWikiStore} from "@/app/(protected-pages)/submit-wiki/layout"
+import {useWikiStore} from "@/stores/wiki"
 
 const formSchema = z.object({
   content: z.string().min(1, "🙁 Content cannot be empty").max(100000, "Content is too long"),

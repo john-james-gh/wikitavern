@@ -6,7 +6,7 @@ import {Button} from "@workspace/ui/components/button"
 import {Separator} from "@workspace/ui/components/separator"
 
 import {submitWikiAction} from "@/actions/wiki"
-import {useWikiStore} from "@/app/(protected-pages)/submit-wiki/layout"
+import {useWikiStore} from "@/stores/wiki"
 
 export function SubmitWikiReview() {
   const wiki = useWikiStore((state) => state.wiki)

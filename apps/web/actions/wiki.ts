@@ -2,11 +2,11 @@
 
 import DOMPurify from "isomorphic-dompurify"
 
-import type {WikiState} from "@/app/(protected-pages)/submit-wiki/layout"
 import {blockContentType} from "@/lib/sanity/block-content-type"
 import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
 import {createClient} from "@/lib/supabase/server"
 import {markdownToBlocks} from "@/lib/utils/markdown-to-blocks"
+import type {WikiState} from "@/stores/wiki"
 import type {Json} from "@/types/supabase"
 
 export const submitWikiAction = async (wiki: WikiState) => {
