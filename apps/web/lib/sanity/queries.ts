@@ -65,3 +65,18 @@ export const PAGES_BY_USER_QUERY = defineQuery(`
     submittedBy
   }
 `)
+
+export const CATEGORIES_QUERY = defineQuery(`
+  *[_type == "category" && defined(slug.current)]{
+    name,
+    "slug": slug.current,
+    description
+  }
+`)
+
+export const TAGS_QUERY = defineQuery(`
+  *[_type == "tag" && defined(slug.current)]{
+    name,
+    "slug": slug.current,
+  }
+`)

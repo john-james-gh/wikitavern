@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "autodocs",
+    "Dragbar",
     "hotspot",
     "nextry",
     "portabletext",
@@ -9,7 +10,8 @@
     "trivago",
     "turbopack",
     "viewports",
-    "wikitavern"
+    "wikitavern",
+    "xenomorph"
   ],
   "github-actions.workflows.pinned.workflows": [".github/workflows/ci.yaml"]
 }

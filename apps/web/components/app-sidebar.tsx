@@ -25,7 +25,7 @@ const exploreItems = [
   {emoji: "📄", label: "All Wikis", url: "/wiki"},
   {emoji: "📂", label: "Categories", url: "/category"},
   {emoji: "🏷️", label: "Tags", url: "/tag"},
-  {emoji: "✍️", label: "Submit Wiki", url: "/submit-wiki"},
+  {emoji: "📝", label: "Submit Wiki", url: "/submit-wiki"},
 ]
 
 const aboutItems = [

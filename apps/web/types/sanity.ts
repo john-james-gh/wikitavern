@@ -369,6 +369,19 @@ export type PAGES_BY_USER_QUERYResult = Array<{
     username?: string
   } | null
 }>
+// Variable: CATEGORIES_QUERY
+// Query: *[_type == "category" && defined(slug.current)]{    name,    "slug": slug.current,    description  }
+export type CATEGORIES_QUERYResult = Array<{
+  name: string | null
+  slug: string | null
+  description: string | null
+}>
+// Variable: TAGS_QUERY
+// Query: *[_type == "tag" && defined(slug.current)]{    name,    "slug": slug.current,  }
+export type TAGS_QUERYResult = Array<{
+  name: string | null
+  slug: string | null
+}>
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -378,5 +391,7 @@ declare module "@sanity/client" {
     '*[\n  _type == "page"\n  && defined(slug.current)\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
     '\n  *[_type in ["page", "post"] && defined(slug.current)] {\n      "href": select(\n        _type == "page" => "/" + slug.current,\n        _type == "post" => "/posts/" + slug.current,\n        slug.current\n      ),\n      _updatedAt\n  }\n  ': SITEMAP_QUERYResult
     '\n  *[_type == "page" && submittedBy.userId == $userId]{\n    _id,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    updatedAt,\n    featured,\n    submittedBy\n  }\n': PAGES_BY_USER_QUERYResult
+    '\n  *[_type == "category" && defined(slug.current)]{\n    name,\n    "slug": slug.current,\n    description\n  }\n': CATEGORIES_QUERYResult
+    '\n  *[_type == "tag" && defined(slug.current)]{\n    name,\n    "slug": slug.current,\n  }\n': TAGS_QUERYResult
   }
 }

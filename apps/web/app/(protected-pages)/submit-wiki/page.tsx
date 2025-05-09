@@ -1,79 +1,40 @@
 import Link from "next/link"
-import {redirect} from "next/navigation"
 
-import {Input} from "@workspace/ui/components/input"
-import {Label} from "@workspace/ui/components/label"
+import {Button} from "@workspace/ui/components/button"
+import {Separator} from "@workspace/ui/components/separator"
 
-import {submitWikiAction} from "@/actions/wiki"
-import {FormMessage, Message} from "@/components/form-message"
-import {MarkdownField} from "@/components/md-editor"
-import {SubmitButton} from "@/components/submit-button"
-import {createClient} from "@/lib/supabase/server"
-
-export default async function SubmitWikiPage(props: {searchParams: Promise<Message>}) {
-  const searchParams = await props.searchParams
-
-  const supabase = await createClient()
-
-  const {
-    data: {user},
-    error,
-  } = await supabase.auth.getUser()
-
-  if (error || !user) {
-    return redirect("/sign-in")
-  }
-
+export default function SubmitWikiIndexPage() {
   return (
     <main className="flex max-w-[65ch] flex-col gap-6">
       <section className="prose dark:prose-invert">
-        <h1>✍️ Submit Your Wiki</h1>
+        <h1>📝 Submit Wiki Overview</h1>
         <p>
-          Welcome to the WikiTavern Wiki submission page! Here, you can submit your own Wiki articles for
-          review. Please ensure that your submission follows our{" "}
-          <Link href="/contribute">Contribution Guidelines.</Link>
+          ✨ Welcome to the WikiTavern Wiki submission page! Here, you can submit your own Wiki articles for
+          review. Please ensure that your submission follows our Contribution Guidelines.
+        </p>
+        <p>The submission form is split into three parts:</p>
+        <ul>
+          <li>📋 Wiki Metadata — Step 1 of 3</li>
+          <li>✍️ Wiki Content — Step 2 of 3</li>
+          <li>🔍 Final Review — Step 3 of 3</li>
+        </ul>
+        <p>💾 You can return to the previous step at any time without losing any progress.</p>
+        <p>
+          ✅ In-browser validation will guide you through the submission process, but mind that the final
+          validation is done on the server at the time of submission.
         </p>
       </section>
-      <form className="flex flex-col gap-4">
-        <div className="flex max-w-md flex-col gap-2">
-          <Label htmlFor="title">Title</Label>
-          <p className="prose dark:prose-invert text-sm">
-            This is the title of the Wiki. It should be descriptive and concise.
-          </p>
-          <Input name="title" />
-        </div>
-        <div className="flex max-w-md flex-col gap-2">
-          <Label htmlFor="slug">Slug</Label>
-          <p className="prose dark:prose-invert text-sm">
-            Must be unique. Look up existing Wikis to ensure you&apos;re not creating a duplicate.
-          </p>
-          <Input name="slug" />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="content">Content</Label>
-          <p className="prose dark:prose-invert text-sm">
-            This is the content of the Wiki. You must use Markdown to format your text. Type your content in
-            the left pane and see the preview on the right.{" "}
-            <a
-              href="https://www.markdownguide.org/basic-syntax/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              Learn more about Markdown
-            </a>
-          </p>
-          <p className="prose dark:prose-invert text-sm">
-            Enter full-screen mode in the top right corner of the editor.
-          </p>
-          <MarkdownField />
-        </div>
-        <SubmitButton formAction={submitWikiAction} pendingText="Submitting Wiki...">
-          Submit
-        </SubmitButton>
-        <FormMessage message={searchParams} />
-      </form>
+      <Separator />
+      <div className="flex justify-between gap-2">
+        <Button type="button" variant="outline">
+          <Link href="/">⬅️ Back to Home</Link>
+        </Button>
+        <Button type="button">
+          <Link href="/submit-wiki/metadata" className="">
+            Continue to Metadata (Step 1 of 3) ➡️
+          </Link>
+        </Button>
+      </div>
     </main>
   )
 }

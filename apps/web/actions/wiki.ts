@@ -2,13 +2,15 @@
 
 import DOMPurify from "isomorphic-dompurify"
 
+import type {WikiState} from "@/app/(protected-pages)/submit-wiki/layout"
 import {blockContentType} from "@/lib/sanity/block-content-type"
 import {encodedRedirect} from "@/lib/supabase/encoded-redirect"
 import {createClient} from "@/lib/supabase/server"
 import {markdownToBlocks} from "@/lib/utils/markdown-to-blocks"
 import type {Json} from "@/types/supabase"
 
-export const submitWikiAction = async (formData: FormData) => {
+export const submitWikiAction = async (wiki: WikiState) => {
+  const {title, slug, content} = wiki
   const supabase = await createClient()
 
   const {
@@ -19,12 +21,8 @@ export const submitWikiAction = async (formData: FormData) => {
     return encodedRedirect("error", "/sign-in", "You must be signed in to submit a Wiki")
   }
 
-  const title = formData.get("title")?.toString().trim()
-  const slug = formData.get("slug")?.toString().trim()
-  const content = formData.get("content")?.toString().trim()
-
   if (!title || !slug || !content) {
-    return encodedRedirect("error", "/submit-wiki", "Fields are required")
+    return encodedRedirect("error", "/submit-wiki/error", "Fields are required")
   }
 
   const safeContent = DOMPurify.sanitize(content)
@@ -41,12 +39,12 @@ export const submitWikiAction = async (formData: FormData) => {
 
   if (error) {
     console.error(error.code + " " + error.message)
-    return encodedRedirect("error", "/submit-wiki", error.message)
+    return encodedRedirect("error", "/submit-wiki/error", error.message)
   }
 
   return encodedRedirect(
     "success",
-    "/submit-wiki",
+    "/submit-wiki/success",
     "Thanks for submitting a Wiki! Hang tight while a moderator reviews it. You can track progress on your profile page.",
   )
 }

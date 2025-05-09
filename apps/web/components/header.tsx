@@ -21,7 +21,7 @@ export async function Header({user, userRole}: HeaderProps) {
         <AppBreadcrumb />
       </div>
       <div className="flex flex-row gap-4 items-center">
-        <span>Hey, {user ? user.email : "there"}!</span>
+        <span>👋 Hey, {user ? user.email : "there"}!</span>
         <Separator orientation="vertical" />
         <span className="text-muted-foreground text-sm">
           {userRole === "admin" ? "Admin" : userRole === "moderator" ? "Moderator" : "User"}
