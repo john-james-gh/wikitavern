@@ -1,3 +1,6 @@
+import Link from "next/link"
+
+import {Button} from "@workspace/ui/components/button"
 import {Separator} from "@workspace/ui/components/separator"
 
 import {FormMessage, Message} from "@/components/form-message"
@@ -13,7 +16,15 @@ export default async function SubmitWikiSuccessPage(props: {searchParams: Promis
         <FormMessage message={searchParams} />
       </section>
       <Separator />
-      <div className="flex justify-end gap-2">
+      <div className="flex justify-between gap-2">
+        <div className="flex gap-2">
+          <Button variant="outline">
+            <Link href="/wiki">👈 Check All Wikis</Link>
+          </Button>
+          <Button variant="outline">
+            <Link href="/profile">👈 Check Your Submissions</Link>
+          </Button>
+        </div>
         <SubmitNewWikiButton />
       </div>
     </main>
