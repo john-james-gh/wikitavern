@@ -29,10 +29,8 @@ export default function SubmitWikiIndexPage() {
         <Button type="button" variant="outline">
           <Link href="/">👈 Back to Home</Link>
         </Button>
-        <Button type="button">
-          <Link href="/submit-wiki/metadata" className="">
-            Continue to Metadata (Step 1 of 3) 👉
-          </Link>
+        <Button type="button" variant="default">
+          <Link href="/submit-wiki/metadata">Continue to Metadata (Step 1 of 3) 👉</Link>
         </Button>
       </div>
     </main>
