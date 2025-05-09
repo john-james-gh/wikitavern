@@ -13,18 +13,21 @@ export interface WikiState {
 interface WikiStore {
   wiki: WikiState
   setWiki: (wiki: Partial<WikiState>) => void
+  resetWiki: () => void
+}
+
+const initialWikiState: WikiState = {
+  title: "",
+  slug: "",
+  category: "",
+  tags: [],
+  requestedCategory: "",
+  requestedTags: [],
+  content: "",
 }
 
 export const useWikiStore = create<WikiStore>((set) => ({
-  wiki: {
-    title: "",
-    slug: "",
-    category: "",
-    tags: [],
-    requestedCategory: "",
-    requestedTags: [],
-    content: "",
-  },
+  wiki: initialWikiState,
   setWiki: (newWiki) =>
     set((state) => ({
       wiki: {
@@ -32,4 +35,5 @@ export const useWikiStore = create<WikiStore>((set) => ({
         ...newWiki,
       },
     })),
+  resetWiki: () => set({wiki: initialWikiState}),
 }))
