@@ -18,7 +18,7 @@ const formSchema = z.object({
   content: z.string().min(1, "🙁 Content cannot be empty").max(100000, "Content is too long"),
 })
 
-type FormData = z.infer<typeof formSchema>
+export type FormData = z.infer<typeof formSchema>
 
 export function WikiContentForm() {
   const setWiki = useWikiStore((state) => state.setWiki)

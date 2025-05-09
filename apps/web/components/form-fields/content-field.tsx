@@ -15,12 +15,10 @@ import {
 } from "@workspace/ui/components/form"
 import {Skeleton} from "@workspace/ui/components/skeleton"
 
-interface ContentFormData {
-  content: string
-}
+import type {FormData} from "../wiki-metadata-form"
 
 interface ContentFieldProps {
-  control: Control<ContentFormData>
+  control: Control<FormData>
 }
 
 export function ContentField({control}: ContentFieldProps) {
