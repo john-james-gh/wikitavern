@@ -23,7 +23,7 @@ import {cn} from "@workspace/ui/lib/utils"
 
 import type {TAGS_QUERYResult} from "@/types/sanity"
 
-import type {FormData} from "../submit-wiki-metadata"
+import type {FormData} from "../wiki-metadata-form"
 
 interface TagsFieldProps {
   control: Control<FormData>

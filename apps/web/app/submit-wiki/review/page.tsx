@@ -1,4 +1,4 @@
-import {SubmitWikiReview} from "@/components/submit-wiki-review"
+import {WikiReviewForm} from "@/components/wiki-review-form"
 
 export default function SubmitWikiReviewPage() {
   return (
@@ -7,7 +7,7 @@ export default function SubmitWikiReviewPage() {
         <h1>Review your submission</h1>
         <h2>📋 Step 3 of 3</h2>
       </section>
-      <SubmitWikiReview />
+      <WikiReviewForm />
     </main>
   )
 }

@@ -11,7 +11,7 @@ import {
 } from "@workspace/ui/components/form"
 import {Input} from "@workspace/ui/components/input"
 
-import type {FormData} from "../submit-wiki-metadata"
+import type {FormData} from "../wiki-metadata-form"
 
 interface SlugFieldProps {
   control: Control<FormData>

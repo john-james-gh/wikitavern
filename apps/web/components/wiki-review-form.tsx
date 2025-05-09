@@ -8,7 +8,7 @@ import {Separator} from "@workspace/ui/components/separator"
 import {submitWikiAction} from "@/actions/wiki"
 import {useWikiStore} from "@/stores/wiki"
 
-export function SubmitWikiReview() {
+export function WikiReviewForm() {
   const wiki = useWikiStore((state) => state.wiki)
 
   async function onClick() {

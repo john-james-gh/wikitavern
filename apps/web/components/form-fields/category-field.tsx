@@ -12,7 +12,7 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@wo
 
 import type {CATEGORIES_QUERYResult} from "@/types/sanity"
 
-import type {FormData} from "../submit-wiki-metadata"
+import type {FormData} from "../wiki-metadata-form"
 
 interface CategoryFieldProps {
   control: Control<FormData>

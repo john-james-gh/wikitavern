@@ -20,7 +20,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-export function SubmitWikiContent() {
+export function WikiContentForm() {
   const setWiki = useWikiStore((state) => state.setWiki)
   const wiki = useWikiStore((state) => state.wiki)
   const router = useRouter()

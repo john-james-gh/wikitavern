@@ -57,7 +57,7 @@ interface SubmitWikiMetadataProps {
   tags: TAGS_QUERYResult
 }
 
-export function SubmitWikiMetadata({categories, tags}: SubmitWikiMetadataProps) {
+export function WikiMetadataForm({categories, tags}: SubmitWikiMetadataProps) {
   const setWiki = useWikiStore((state) => state.setWiki)
   const wiki = useWikiStore((state) => state.wiki)
   const router = useRouter()

@@ -3,7 +3,7 @@ import {UseFormReturn} from "react-hook-form"
 
 import type {TAGS_QUERYResult} from "@/types/sanity"
 
-import type {FormData} from "../submit-wiki-metadata"
+import type {FormData} from "../wiki-metadata-form"
 
 interface SelectedTagsDisplayProps {
   form: UseFormReturn<FormData>

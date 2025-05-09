@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import {Separator} from "@workspace/ui/components/separator"
 
-import {SubmitWikiContent} from "@/components/submit-wiki-content"
+import {WikiContentForm} from "@/components/wiki-content-form"
 
 export default function SubmitWikiContentPage() {
   return (
@@ -17,7 +17,7 @@ export default function SubmitWikiContentPage() {
         </p>
       </section>
       <Separator />
-      <SubmitWikiContent />
+      <WikiContentForm />
     </main>
   )
 }

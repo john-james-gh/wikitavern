@@ -4,7 +4,7 @@ import {redirect} from "next/navigation"
 import {Separator} from "@workspace/ui/components/separator"
 
 import {Message} from "@/components/form-message"
-import {SubmitWikiMetadata} from "@/components/submit-wiki-metadata"
+import {WikiMetadataForm} from "@/components/wiki-metadata-form"
 import {sanityFetch} from "@/lib/sanity/live"
 import {CATEGORIES_QUERY, TAGS_QUERY} from "@/lib/sanity/queries"
 import {createClient} from "@/lib/supabase/server"
@@ -49,7 +49,7 @@ export default async function SubmitWikiMetadataPage(props: {searchParams: Promi
         </p>
       </section>
       <Separator />
-      <SubmitWikiMetadata categories={categories} tags={tags} />
+      <WikiMetadataForm categories={categories} tags={tags} />
     </main>
   )
 }
