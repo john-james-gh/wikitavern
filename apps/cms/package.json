@@ -12,11 +12,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sanity/vision": "^3.86.1",
+    "@sanity/vision": "^3.88.2",
     "@workspace/cms-schema": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanity": "^3.86.1",
+    "sanity": "^3.88.2",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {
