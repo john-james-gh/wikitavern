@@ -1,5 +1,7 @@
 import {expect, test} from "@playwright/test"
 
+test.use({storageState: ".auth/moderator.json"})
+
 test.beforeEach(async ({page}) => {
   await page.goto("/")
 })

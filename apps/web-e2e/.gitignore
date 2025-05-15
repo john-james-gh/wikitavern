@@ -9,3 +9,5 @@ node_modules/
 # BrowserStack
 /log
 local.log
+/.auth
+

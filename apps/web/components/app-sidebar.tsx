@@ -121,49 +121,41 @@ export function AppSidebar({user, userRole}: AppSidebarProps) {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {userRole && (
+        {userRole && ["admin", "moderator"].includes(userRole) && (
           <SidebarGroup>
             <SidebarGroupLabel>Moderation</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {["admin", "moderator"].includes(userRole) && (
-                  <>
-                    {moderatorItems.map((item) => (
-                      <SidebarMenuItem key={item.label}>
-                        <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
-                          <Link href={item.url}>
-                            <span className="mr-2">{item.emoji}</span>
-                            <span>{item.label}</span>
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </>
-                )}
+                {moderatorItems.map((item) => (
+                  <SidebarMenuItem key={item.label}>
+                    <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
+                      <Link href={item.url}>
+                        <span className="mr-2">{item.emoji}</span>
+                        <span>{item.label}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         )}
 
-        {userRole && (
+        {userRole && ["admin"].includes(userRole) && (
           <SidebarGroup>
             <SidebarGroupLabel>Administration</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {["admin"].includes(userRole) && (
-                  <>
-                    {adminItems.map((item) => (
-                      <SidebarMenuItem key={item.label}>
-                        <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
-                          <Link href={item.url}>
-                            <span className="mr-2">{item.emoji}</span>
-                            <span>{item.label}</span>
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </>
-                )}
+                {adminItems.map((item) => (
+                  <SidebarMenuItem key={item.label}>
+                    <SidebarMenuButton asChild isActive={pathname === item.url ? true : undefined}>
+                      <Link href={item.url}>
+                        <span className="mr-2">{item.emoji}</span>
+                        <span>{item.label}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

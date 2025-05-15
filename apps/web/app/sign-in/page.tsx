@@ -8,6 +8,11 @@ import {signInAction} from "@/actions/auth"
 import {FormMessage, Message} from "@/components/form-message"
 import {SubmitButton} from "@/components/submit-button"
 
+export const metadata = {
+  title: "Sign in | WikiTavern",
+  description: "Sign in to your WikiTavern account",
+}
+
 export default async function SignIn(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams
   return (
