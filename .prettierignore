@@ -1,0 +1,25 @@
+# Test results
+**/test-results/
+**/playwright-report/
+**/playwright/.cache/
+
+# Type generation
+**/*.d.ts
+
+# Build outputs
+**/dist/
+**/.next/
+**/out/
+**/build/
+
+# Cache
+**/.turbo/
+**/.cache/
+**/node_modules/
+
+# Generated files
+**/coverage/
+**/.eslintcache
+**/.pnpm-store/
+**/.vercel/ 
+**/log
