@@ -2,21 +2,20 @@ import type {Metadata} from "next"
 import {PortableText} from "next-sanity"
 import {notFound} from "next/navigation"
 
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {components} from "@/lib/sanity/portable-text-components"
 import {PAGE_QUERY} from "@/lib/sanity/queries"
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {
     title: `About | WikiTavern`,
-    metadataBase: new URL("https://acme.com"),
   }
 
   return metadata
 }
 
 export default async function Page() {
-  const {data} = await sanityFetch({query: PAGE_QUERY, params: {slug: "about"}})
+  const data = await client.fetch(PAGE_QUERY, {slug: "about"})
 
   if (!data) {
     notFound()

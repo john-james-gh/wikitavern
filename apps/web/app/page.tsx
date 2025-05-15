@@ -1,7 +1,7 @@
 import type {Metadata} from "next"
 import Link from "next/link"
 
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,13 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getFeaturedPages() {
-  const {data} = await sanityFetch({query: FEATURED_PAGES_QUERY})
-  return data
+  return client.fetch(FEATURED_PAGES_QUERY)
 }
 
 async function getRecentlyUpdatedPages() {
-  const {data} = await sanityFetch({query: RECENTLY_UPDATED_PAGES_QUERY})
-  return data
+  return client.fetch(RECENTLY_UPDATED_PAGES_QUERY)
 }
 
 export default async function Page() {

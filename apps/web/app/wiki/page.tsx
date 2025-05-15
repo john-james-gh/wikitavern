@@ -1,10 +1,10 @@
 import Link from "next/link"
 
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {PAGES_SLUGS_QUERY} from "@/lib/sanity/queries"
 
 export default async function AllWikisPage() {
-  const {data: pages} = await sanityFetch({query: PAGES_SLUGS_QUERY})
+  const pages = await client.fetch(PAGES_SLUGS_QUERY)
 
   return (
     <main className="flex flex-col gap-6">

@@ -1,12 +1,12 @@
 import {PortableText} from "next-sanity"
 import {notFound} from "next/navigation"
 
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {components} from "@/lib/sanity/portable-text-components"
 import {PAGE_QUERY} from "@/lib/sanity/queries"
 
 export default async function Page() {
-  const {data} = await sanityFetch({query: PAGE_QUERY, params: {slug: "contribute"}})
+  const data = await client.fetch(PAGE_QUERY, {slug: "contribute"})
 
   if (!data) {
     notFound()

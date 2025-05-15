@@ -3,7 +3,7 @@ import {PortableText} from "next-sanity"
 import {notFound} from "next/navigation"
 import {Article, WithContext} from "schema-dts"
 
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {components} from "@/lib/sanity/portable-text-components"
 import {PAGE_QUERY} from "@/lib/sanity/queries"
 
@@ -13,11 +13,8 @@ type Props = {
 }
 
 const getPage = async (params: Props["params"]) => {
-  const {data} = await sanityFetch({
-    query: PAGE_QUERY,
-    params: await params,
-  })
-  return data
+  const slug = await params
+  return client.fetch(PAGE_QUERY, {slug})
 }
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {

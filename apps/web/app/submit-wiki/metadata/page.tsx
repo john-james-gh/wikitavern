@@ -5,18 +5,16 @@ import {Separator} from "@workspace/ui/components/separator"
 
 import {Message} from "@/components/form-message"
 import {WikiMetadataForm} from "@/components/wiki-metadata-form"
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {CATEGORIES_QUERY, TAGS_QUERY} from "@/lib/sanity/queries"
 import {createClient} from "@/lib/supabase/server"
 
 async function getCategories() {
-  const {data} = await sanityFetch({query: CATEGORIES_QUERY})
-  return data
+  return client.fetch(CATEGORIES_QUERY)
 }
 
 async function getTags() {
-  const {data} = await sanityFetch({query: TAGS_QUERY})
-  return data
+  return client.fetch(TAGS_QUERY)
 }
 
 export default async function SubmitWikiMetadataPage(props: {searchParams: Promise<Message>}) {

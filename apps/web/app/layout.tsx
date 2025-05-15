@@ -5,8 +5,6 @@ import "@workspace/ui/globals.css"
 import {AppSidebar} from "@/components/app-sidebar"
 import {Header} from "@/components/header"
 import {Providers} from "@/components/providers"
-import {IsTestEnvironment} from "@/config/environment"
-import {SanityLive} from "@/lib/sanity/live"
 import {createClient} from "@/lib/supabase/server"
 
 const fontSans = Geist({
@@ -58,7 +56,6 @@ export default async function RootLayout({
             {children}
           </div>
         </Providers>
-        {IsTestEnvironment ? null : <SanityLive />}
       </body>
     </html>
   )

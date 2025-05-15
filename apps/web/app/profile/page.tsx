@@ -4,7 +4,7 @@ import {redirect} from "next/navigation"
 import {Button} from "@workspace/ui/components/button"
 
 import {signOutAction} from "@/actions/auth"
-import {sanityFetch} from "@/lib/sanity/live"
+import {client} from "@/lib/sanity/client"
 import {PAGES_BY_USER_QUERY} from "@/lib/sanity/queries"
 import {createClient} from "@/lib/supabase/server"
 
@@ -25,7 +25,7 @@ export default async function Page() {
     return redirect("/sign-in")
   }
 
-  const {data} = await sanityFetch({query: PAGES_BY_USER_QUERY, params: {userId: user.id}})
+  const data = await client.fetch(PAGES_BY_USER_QUERY, {userId: user.id})
 
   return (
     <main className="prose dark:prose-invert flex flex-col">
