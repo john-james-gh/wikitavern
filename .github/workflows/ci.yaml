@@ -11,31 +11,19 @@ env:
   TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
 jobs:
-  build:
-    name: Build and Test
-    timeout-minutes: 15
+  ci:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        task: [build, build-storybook, lint, typecheck, e2e, test]
+      fail-fast: false
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
-
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Install Playwright Browsers
-        run: pnpm dlx playwright install --with-deps
-
-      - name: Test Application
-        run: pnpm turbo build build-storybook lint typecheck e2e test
+          cache: pnpm
+      - run: pnpm install
+      - name: Run ${{ matrix.task }}
+        run: pnpm turbo run ${{ matrix.task }}
