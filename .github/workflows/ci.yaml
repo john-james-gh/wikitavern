@@ -13,10 +13,6 @@ env:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        task: [build, build-storybook, lint, typecheck, e2e, test]
-      fail-fast: false
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -25,5 +21,22 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install
-      - name: Run ${{ matrix.task }}
-        run: pnpm turbo run ${{ matrix.task }}
+      - run: pnpm dlx playwright install --with-deps
+
+      - name: Turbo Build
+        run: pnpm turbo run build
+
+      - name: Turbo Storybook
+        run: pnpm turbo run build-storybook
+
+      - name: Turbo Lint
+        run: pnpm turbo run lint
+
+      - name: Turbo Typecheck
+        run: pnpm turbo run typecheck
+
+      - name: Turbo E2E
+        run: pnpm turbo run e2e
+
+      - name: Turbo Unit Tests
+        run: pnpm turbo run test
