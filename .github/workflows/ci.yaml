@@ -12,31 +12,30 @@ env:
 
 jobs:
   ci:
+    name: Build and Test
+    timeout-minutes: 15
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
-      - run: pnpm install
-      - run: pnpm dlx playwright install --with-deps
+          cache: "pnpm"
 
-      - name: Turbo Build
-        run: pnpm turbo run build
+      - name: Install Dependencies
+        run: pnpm install
 
-      - name: Turbo Storybook
-        run: pnpm turbo run build-storybook
+      - name: Install Playwright Browsers
+        run: pnpm dlx playwright install --with-deps
 
-      - name: Turbo Lint
-        run: pnpm turbo run lint
-
-      - name: Turbo Typecheck
-        run: pnpm turbo run typecheck
-
-      - name: Turbo E2E
-        run: pnpm turbo run e2e
-
-      - name: Turbo Unit Tests
-        run: pnpm turbo run test
+      - name: Test Application
+        run: pnpm turbo build build-storybook lint typecheck e2e test
