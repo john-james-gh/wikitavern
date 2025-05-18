@@ -4,7 +4,7 @@ import {Button} from "@workspace/ui/components/button"
 import {Separator} from "@workspace/ui/components/separator"
 
 import {FormMessage, Message} from "@/components/form-message"
-import {SubmitNewWikiButton} from "@/components/submit-new-wiki-button"
+import {ResetWikiForm} from "@/components/reset-wiki-form"
 
 export default async function SubmitWikiSuccessPage(props: {searchParams: Promise<Message>}) {
   const searchParams = await props.searchParams
@@ -25,8 +25,11 @@ export default async function SubmitWikiSuccessPage(props: {searchParams: Promis
             <Link href="/profile">👈 Check Your Submissions</Link>
           </Button>
         </div>
-        <SubmitNewWikiButton />
+        <Button type="button">
+          <Link href="/submit-wiki"> Submit another Wiki 🚀</Link>
+        </Button>
       </div>
+      <ResetWikiForm />
     </main>
   )
 }
