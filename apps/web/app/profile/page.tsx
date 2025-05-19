@@ -13,7 +13,7 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 }
 
-export async function getPendingSubmissions(userId: string) {
+async function getPendingSubmissions(userId: string) {
   const supabase = await createClient()
 
   const {data, error} = await supabase
