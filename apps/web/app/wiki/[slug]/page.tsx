@@ -14,7 +14,7 @@ type Props = {
 
 const getPage = async (params: Props["params"]) => {
   const slug = await params
-  return client.fetch(PAGE_QUERY, {slug})
+  return client.fetch(PAGE_QUERY, slug)
 }
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
@@ -30,7 +30,6 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   const metadata: Metadata = {
     title: `${data.seo.title} | WikiTavern`,
     description: data.seo.description,
-    metadataBase: new URL("https://acme.com"),
   }
 
   if (data.seo.noIndex) {
