@@ -18,7 +18,6 @@ export function WikiReviewForm() {
   return (
     <section className="flex flex-col gap-4">
       <pre>{JSON.stringify(wiki, null, 2)}</pre>
-      <Separator />
       <div className="flex justify-between gap-2">
         <Button type="button" variant="outline">
           <Link href="/submit-wiki/content">⬅️ Back to Content (Step 2 of 3)</Link>
