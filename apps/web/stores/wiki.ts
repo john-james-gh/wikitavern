@@ -1,29 +1,29 @@
 import {create} from "zustand"
 
-export interface WikiState {
-  title: string
-  slug: string
-  category: string
-  tags: string[]
-  requestedCategory: string
-  requestedTags: string[]
-  content: string
-}
+import type {Database} from "@/types/supabase"
 
 interface WikiStore {
-  wiki: WikiState
-  setWiki: (wiki: Partial<WikiState>) => void
+  wiki: Database["public"]["Tables"]["wiki_submissions"]["Row"]
+  setWiki: (wiki: Partial<Database["public"]["Tables"]["wiki_submissions"]["Row"]>) => void
   resetWiki: () => void
 }
 
-const initialWikiState: WikiState = {
+const initialWikiState: Database["public"]["Tables"]["wiki_submissions"]["Row"] = {
+  id: "",
   title: "",
   slug: "",
-  category: "",
-  tags: [],
-  requestedCategory: "",
-  requestedTags: [],
+  category_id: null,
+  tag_ids: null,
+  requested_category: null,
+  requested_tags: null,
   content: "",
+  created_at: "",
+  featured: false,
+  moderated_at: "",
+  moderated_by: "",
+  status: "pending",
+  submitted_by: "",
+  submitted_username: "",
 }
 
 export const useWikiStore = create<WikiStore>((set) => ({

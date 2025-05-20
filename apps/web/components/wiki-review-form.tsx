@@ -3,16 +3,20 @@
 import Link from "next/link"
 
 import {Button} from "@workspace/ui/components/button"
-import {Separator} from "@workspace/ui/components/separator"
 
-import {submitWikiAction} from "@/actions/wiki"
+import {submitWikiAction, updateWikiAction} from "@/actions/wiki"
 import {useWikiStore} from "@/stores/wiki"
 
 export function WikiReviewForm() {
   const wiki = useWikiStore((state) => state.wiki)
 
   async function onClick() {
-    await submitWikiAction(wiki)
+    if (!wiki.id) {
+      await submitWikiAction(wiki)
+      return
+    }
+
+    await updateWikiAction(wiki)
   }
 
   return (

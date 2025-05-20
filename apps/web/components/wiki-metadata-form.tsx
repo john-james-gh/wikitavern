@@ -27,11 +27,10 @@ const formSchema = z
   .object({
     title: z.string().min(2).max(50),
     slug: z.string().min(2).max(50),
-    category: z.string().max(50),
+    category: z.string().max(100),
     requestedCategory: z.string().max(50),
-    tags: z.array(z.string()),
+    tags: z.array(z.string().max(100)),
     requestedTags: z.array(z.string()),
-    content: z.string(),
   })
   .refine((data) => data.category || data.requestedCategory, {
     message: "Please select a category or request a new one",
@@ -67,16 +66,22 @@ export function WikiMetadataForm({categories, tags}: SubmitWikiMetadataProps) {
     defaultValues: {
       title: wiki.title,
       slug: wiki.slug,
-      category: wiki.category,
-      requestedCategory: wiki.requestedCategory,
-      tags: wiki.tags,
-      requestedTags: wiki.requestedTags,
-      content: wiki.content,
+      category: wiki.category_id ?? undefined,
+      requestedCategory: wiki.requested_category ?? undefined,
+      tags: wiki.tag_ids ?? undefined,
+      requestedTags: wiki.requested_tags ?? undefined,
     },
   })
 
   function onSubmit(values: FormData) {
-    setWiki(values)
+    setWiki({
+      title: values.title,
+      slug: values.slug,
+      category_id: values.category,
+      requested_category: values.requestedCategory,
+      tag_ids: values.tags,
+      requested_tags: values.requestedTags,
+    })
     router.push("/submit-wiki/content")
   }
 

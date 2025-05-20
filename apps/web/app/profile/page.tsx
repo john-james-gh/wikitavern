@@ -2,8 +2,11 @@ import Link from "next/link"
 import {redirect} from "next/navigation"
 
 import {Button} from "@workspace/ui/components/button"
+import {Separator} from "@workspace/ui/components/separator"
 
 import {signOutAction} from "@/actions/auth"
+import {DataTable} from "@/components/data-table"
+import {cmsColumns, dbColumns} from "@/components/wiki-table-columns"
 import {client} from "@/lib/sanity/client"
 import {PAGES_BY_USER_QUERY} from "@/lib/sanity/queries"
 import {createClient} from "@/lib/supabase/server"
@@ -16,11 +19,7 @@ export const metadata = {
 async function getPendingSubmissions(userId: string) {
   const supabase = await createClient()
 
-  const {data, error} = await supabase
-    .from("wiki_submissions")
-    .select("*")
-    .eq("submitted_by", userId)
-    .eq("status", "pending")
+  const {data, error} = await supabase.from("wiki_submissions").select("*").eq("submitted_by", userId)
 
   if (error) {
     console.error(error)
@@ -65,7 +64,7 @@ export default async function Page() {
   const [pendingSubmissions, pagesByUser] = await Promise.all([pendingSubmissionsData, pagesByUserData])
 
   return (
-    <main className="flex flex-col gap-4">
+    <main className="flex flex-col gap-4 max-w-[65ch]">
       <section className="prose dark:prose-invert">
         <h1>👤 Your WikiTavern Profile</h1>
         <p>
@@ -74,7 +73,10 @@ export default async function Page() {
         </p>
       </section>
 
-      <section>
+      <Separator />
+
+      <section className="flex justify-between items-center">
+        <p>Email: {user.email}</p>
         <form>
           <Button type="submit" variant={"outline"} formAction={signOutAction}>
             Sign out
@@ -82,29 +84,25 @@ export default async function Page() {
         </form>
       </section>
 
-      <article className="prose dark:prose-invert">
-        <h2>🚀 Your Published Wikis</h2>
+      <Separator />
+
+      <article className="flex flex-col gap-4">
+        <div className="prose dark:prose-invert">
+          <h3>🚀 Your Published Wikis</h3>
+        </div>
         {pagesByUser?.length ? (
-          <ul>
-            {pagesByUser.map((page) => (
-              <li key={page._id}>
-                <Link href={`/wiki/${page.slug}`}>{page.title}</Link>
-              </li>
-            ))}
-          </ul>
+          <DataTable columns={cmsColumns} data={pagesByUser} />
         ) : (
           <p className="text-muted-foreground">No wikis yet!</p>
         )}
       </article>
 
-      <article className="prose dark:prose-invert">
-        <h2>🚀 Your Pending Wikis</h2>
+      <article className="flex flex-col gap-4">
+        <div className="prose dark:prose-invert">
+          <h3>🚀 Your Submitted Wikis</h3>
+        </div>
         {pendingSubmissions?.length ? (
-          <ul>
-            {pendingSubmissions.map((submission) => (
-              <li key={submission.id}>{submission.title}</li>
-            ))}
-          </ul>
+          <DataTable columns={dbColumns} data={pendingSubmissions} />
         ) : (
           <p className="text-muted-foreground">No pending wikis yet!</p>
         )}

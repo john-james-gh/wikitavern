@@ -1,6 +1,7 @@
 import type {TypedObject} from "@portabletext/block-tools"
 import {PortableText} from "next-sanity"
 
+import {WikiApproveForm} from "@/components/wiki-approve-form"
 import {components} from "@/lib/sanity/portable-text-components"
 import {createClient} from "@/lib/supabase/server"
 
@@ -28,7 +29,8 @@ export default async function Page({params}: Props) {
   return (
     <main className="prose dark:prose-invert flex flex-col">
       <h1>🧑‍⚖️ Review Pending Wiki</h1>
-      <h2>{wiki.title}</h2>
+      <WikiApproveForm wiki={wiki} slug={slug} />
+      <h3>{wiki.title}</h3>
       {wiki.content && (
         <PortableText value={wiki.content as unknown as TypedObject[]} components={components} />
       )}

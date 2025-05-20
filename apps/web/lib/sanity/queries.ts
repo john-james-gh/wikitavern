@@ -58,6 +58,7 @@ export const PAGES_BY_USER_QUERY = defineQuery(`
   *[_type == "page" && submittedBy.userId == $userId]{
     _id,
     title,
+    "category": category->slug.current,
     "slug": slug.current,
     publishedAt,
     updatedAt,

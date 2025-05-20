@@ -29,12 +29,14 @@ export function WikiContentForm() {
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: {
-      content: wiki.content,
+      content: wiki.content as string,
     },
   })
 
   function onSubmit(values: FormData) {
-    setWiki(values)
+    setWiki({
+      content: values.content,
+    })
     router.push("/submit-wiki/review")
   }
 

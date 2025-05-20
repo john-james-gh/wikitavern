@@ -64,7 +64,7 @@ export function ContentField({control}: ContentFieldProps) {
           <div className="p-6 border rounded-md w-full">
             <MDEditor.Markdown
               source={field.value || "#### Content will be preview here 🙂"}
-              className="prose dark:prose-invert"
+              className="prose dark:prose-invert [&.wmde-markdown]:!bg-transparent [&.wmde-markdown-color]:!bg-transparent"
             />
           </div>
         </FormItem>
