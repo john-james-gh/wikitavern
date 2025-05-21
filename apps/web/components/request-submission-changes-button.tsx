@@ -20,10 +20,10 @@ export function RequestSubmissionChangesButton({wiki}: RequestSubmissionChangesB
 
   const handleRequestChanges = () => {
     setWiki({
-      title: wiki.title || "",
-      slug: wiki.slug || "",
-      category: wiki.category_id || "",
-      tags: wiki.requested_tags || [],
+      title: wiki.title,
+      slug: wiki.slug,
+      category_id: wiki.category_id,
+      tag_ids: wiki.requested_tags,
       content: toMarkdown(wiki.content),
     })
     router.push("/submit-wiki/metadata")
