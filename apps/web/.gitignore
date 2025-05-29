@@ -1,0 +1,4 @@
+# BrowserStack
+/log
+local.log
+/.auth

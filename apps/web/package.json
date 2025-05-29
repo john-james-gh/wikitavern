@@ -9,7 +9,7 @@
     "dev": "next dev --turbopack",
     "lint": "next lint",
     "start": "next start",
-    "test": "jest --coverage",
+    "test": "browserstack-node-sdk jest --coverage",
     "test-watch": "jest --watch",
     "typecheck": "tsc --noEmit",
     "typegen": "sanity typegen generate"
@@ -64,6 +64,7 @@
     "@workspace/typescript-config": "workspace:*",
     "jest": "^29.7.0",
     "msw": "^2.7.5",
+    "browserstack-node-sdk": "^1.35.6",
     "ts-jest": "^29.3.4",
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4"
