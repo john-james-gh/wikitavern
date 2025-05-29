@@ -91,7 +91,7 @@ export default async function Page() {
           <h3>🚀 Your Published Wikis</h3>
         </div>
         {pagesByUser?.length ? (
-          <DataTable columns={cmsColumns} data={pagesByUser} />
+          <DataTable columns={cmsColumns} data={pagesByUser as any} />
         ) : (
           <p className="text-muted-foreground">No wikis yet!</p>
         )}
