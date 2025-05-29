@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "e2e": "browserstack-node-sdk playwright test",
-    "e2e-local": "playwright test"
+    "e2e-local": "playwright test",
+    "preinstall": "pnpm dlx playwright install"
   },
   "dependencies": {
     "@workspace/web": "workspace:*",
