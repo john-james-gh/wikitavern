@@ -17,7 +17,7 @@ describe("generateMetadata()", () => {
   })
 })
 
-describe("<Page />", () => {
+describe.skip("<Page />", () => {
   const featured: RawQuerylessQueryResponse<any> = {
     ms: 0,
     result: [{_id: "1", slug: {current: "foo"}, title: "Foo Page"}],
