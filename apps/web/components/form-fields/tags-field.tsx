@@ -45,9 +45,9 @@ export function TagsField({control, form, tags}: TagsFieldProps) {
                 <Button
                   variant="outline"
                   role="combobox"
-                  className={cn("w-full justify-between", !field.value.length && "text-muted-foreground")}
+                  className={cn("w-full justify-between", !field.value?.length && "text-muted-foreground")}
                 >
-                  {field.value.length > 0
+                  {field.value?.length > 0
                     ? field.value.map((tag) => tags.find((t) => t.slug === tag)?.name).join(", ")
                     : "Select tags"}
                   <ChevronsUpDown className="opacity-50" />
@@ -88,7 +88,7 @@ export function TagsField({control, form, tags}: TagsFieldProps) {
                           <Check
                             className={cn(
                               "ml-auto",
-                              field.value.includes(tag.slug!) ? "opacity-100" : "opacity-0",
+                              field.value?.includes(tag.slug!) ? "opacity-100" : "opacity-0",
                             )}
                           />
                         </CommandItem>

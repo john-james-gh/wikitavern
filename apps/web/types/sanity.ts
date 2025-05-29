@@ -274,8 +274,62 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: lib/sanity/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  _id,  title,  slug,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content,  category->{_id, title, slug},  tags[]->{_id, title, slug},  publishedAt,  updatedAt}
+// Query: *[_type == "page" && slug.current == $slug][0]{    _id,    title,    slug,    "seo": {      "title": coalesce(seo.title, title, ""),      "description": coalesce(seo.description,  ""),      "image": seo.image,      "noIndex": seo.noIndex == true    },    content,    category->{_id, title, slug},    tags[]->{_id, title, slug},    publishedAt,    updatedAt}
 export type PAGE_QUERYResult = {
+  _id: string
+  title: string | null
+  slug: Slug | null
+  seo: {
+    title: string | ""
+    description: string | ""
+    image: {
+      asset?: {
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: "image"
+    } | null
+    noIndex: boolean | false
+  }
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: "span"
+      _key: string
+    }>
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal"
+    listItem?: "bullet" | "number"
+    markDefs?: Array<{
+      href?: string
+      _type: "link"
+      _key: string
+    }>
+    level?: number
+    _type: "block"
+    _key: string
+  }> | null
+  category: {
+    _id: string
+    title: null
+    slug: Slug | null
+  } | null
+  tags: Array<{
+    _id: string
+    title: null
+    slug: Slug | null
+  }> | null
+  publishedAt: string | null
+  updatedAt: string | null
+} | null
+// Variable: PAGE_BY_SLUG_QUERY
+// Query: *[_type == "page" && slug.current == $wiki && category->slug.current == $category][0]{    _id,    title,    slug,    "seo": {      "title": coalesce(seo.title, title, ""),      "description": coalesce(seo.description,  ""),      "image": seo.image,      "noIndex": seo.noIndex == true    },    content,    category->{_id, title, slug},    tags[]->{_id, title, slug},    publishedAt,    updatedAt  }
+export type PAGE_BY_SLUG_QUERYResult = {
   _id: string
   title: string | null
   slug: Slug | null
@@ -356,10 +410,11 @@ export type SITEMAP_QUERYResult = Array<{
   _updatedAt: string
 }>
 // Variable: PAGES_BY_USER_QUERY
-// Query: *[_type == "page" && submittedBy.userId == $userId]{    _id,    title,    "slug": slug.current,    publishedAt,    updatedAt,    featured,    submittedBy  }
+// Query: *[_type == "page" && submittedBy.userId == $userId]{    _id,    title,    "category": category->slug.current,    "slug": slug.current,    publishedAt,    updatedAt,    featured,    submittedBy  }
 export type PAGES_BY_USER_QUERYResult = Array<{
   _id: string
   title: string | null
+  category: string | null
   slug: string | null
   publishedAt: string | null
   updatedAt: string | null
@@ -376,6 +431,19 @@ export type CATEGORIES_QUERYResult = Array<{
   slug: string | null
   description: string | null
 }>
+// Variable: CATEGORY_BY_SLUG_QUERY
+// Query: *[_type == "category"  && slug.current == $slug][0]{    _id,    name,    "slug": slug.current,    description,    "pages": *[_type == "page" && references(^._id)]{    _id,    title,    "slug": slug.current  }  }
+export type CATEGORY_BY_SLUG_QUERYResult = {
+  _id: string
+  name: string | null
+  slug: string | null
+  description: string | null
+  pages: Array<{
+    _id: string
+    title: string | null
+    slug: string | null
+  }>
+} | null
 // Variable: TAGS_QUERY
 // Query: *[_type == "tag" && defined(slug.current)]{    name,    "slug": slug.current,  }
 export type TAGS_QUERYResult = Array<{
@@ -385,13 +453,15 @@ export type TAGS_QUERYResult = Array<{
 
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "page" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  content,\n  category->{_id, title, slug},\n  tags[]->{_id, title, slug},\n  publishedAt,\n  updatedAt\n}': PAGE_QUERYResult
+    '*[_type == "page" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    "seo": {\n      "title": coalesce(seo.title, title, ""),\n      "description": coalesce(seo.description,  ""),\n      "image": seo.image,\n      "noIndex": seo.noIndex == true\n    },\n    content,\n    category->{_id, title, slug},\n    tags[]->{_id, title, slug},\n    publishedAt,\n    updatedAt\n}': PAGE_QUERYResult
+    '\n  *[_type == "page" && slug.current == $wiki && category->slug.current == $category][0]{\n    _id,\n    title,\n    slug,\n    "seo": {\n      "title": coalesce(seo.title, title, ""),\n      "description": coalesce(seo.description,  ""),\n      "image": seo.image,\n      "noIndex": seo.noIndex == true\n    },\n    content,\n    category->{_id, title, slug},\n    tags[]->{_id, title, slug},\n    publishedAt,\n    updatedAt\n  }\n': PAGE_BY_SLUG_QUERYResult
     '*[_type == "page" && defined(slug.current)]{\n  title,\n  "slug": slug.current,\n}': PAGES_SLUGS_QUERYResult
     '*[\n  _type == "page" \n  && defined(slug.current)\n  && featured == true \n] | order(publishedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': FEATURED_PAGES_QUERYResult
     '*[\n  _type == "page"\n  && defined(slug.current)\n] | order(updatedAt desc)[0...6]{\n  _id,\n  title,\n  slug,\n  updatedAt\n}': RECENTLY_UPDATED_PAGES_QUERYResult
     '\n  *[_type in ["page", "post"] && defined(slug.current)] {\n      "href": select(\n        _type == "page" => "/" + slug.current,\n        _type == "post" => "/posts/" + slug.current,\n        slug.current\n      ),\n      _updatedAt\n  }\n  ': SITEMAP_QUERYResult
-    '\n  *[_type == "page" && submittedBy.userId == $userId]{\n    _id,\n    title,\n    "slug": slug.current,\n    publishedAt,\n    updatedAt,\n    featured,\n    submittedBy\n  }\n': PAGES_BY_USER_QUERYResult
+    '\n  *[_type == "page" && submittedBy.userId == $userId]{\n    _id,\n    title,\n    "category": category->slug.current,\n    "slug": slug.current,\n    publishedAt,\n    updatedAt,\n    featured,\n    submittedBy\n  }\n': PAGES_BY_USER_QUERYResult
     '\n  *[_type == "category" && defined(slug.current)]{\n    name,\n    "slug": slug.current,\n    description\n  }\n': CATEGORIES_QUERYResult
+    '\n  *[_type == "category"  && slug.current == $slug][0]{\n    _id,\n    name,\n    "slug": slug.current,\n    description,\n    "pages": *[_type == "page" && references(^._id)]{\n    _id,\n    title,\n    "slug": slug.current\n  }\n  }\n': CATEGORY_BY_SLUG_QUERYResult
     '\n  *[_type == "tag" && defined(slug.current)]{\n    name,\n    "slug": slug.current,\n  }\n': TAGS_QUERYResult
   }
 }

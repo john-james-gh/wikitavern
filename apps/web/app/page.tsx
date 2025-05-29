@@ -2,7 +2,7 @@ import type {Metadata} from "next"
 import Link from "next/link"
 
 import {client} from "@/lib/sanity/client"
-import {FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
+import {CATEGORIES_QUERY, FEATURED_PAGES_QUERY, RECENTLY_UPDATED_PAGES_QUERY} from "@/lib/sanity/queries"
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {
@@ -20,11 +20,21 @@ async function getRecentlyUpdatedPages() {
   return client.fetch(RECENTLY_UPDATED_PAGES_QUERY)
 }
 
+async function getCategories() {
+  const data = await client.fetch(CATEGORIES_QUERY)
+  return data
+}
+
 export default async function Page() {
   const featuredPagesData = getFeaturedPages()
   const recentlyUpdatedPagesData = getRecentlyUpdatedPages()
+  const categoriesData = getCategories()
 
-  const [featuredPages, recentPages] = await Promise.all([featuredPagesData, recentlyUpdatedPagesData])
+  const [featuredPages, recentPages, categories] = await Promise.all([
+    featuredPagesData,
+    recentlyUpdatedPagesData,
+    categoriesData,
+  ])
 
   return (
     <main className="prose dark:prose-invert">
@@ -33,6 +43,15 @@ export default async function Page() {
         <strong>Wikitavern</strong> is a clean, ad-free, fan-powered wiki platform. Built for contributors who
         care about the stories they tell — without the clutter of ads or corporate ownership.
       </p>
+
+      <h2>🔍 Categories</h2>
+      <ul>
+        {categories.map((category) => (
+          <li key={category.slug}>
+            <Link href={`/${category.slug}`}>{category.name}</Link>
+          </li>
+        ))}
+      </ul>
 
       <h2>🚀 Featured Wikis</h2>
       {featuredPages?.length ? (

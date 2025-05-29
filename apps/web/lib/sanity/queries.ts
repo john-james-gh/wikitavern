@@ -1,21 +1,40 @@
 import {defineQuery} from "next-sanity"
 
 export const PAGE_QUERY = defineQuery(`*[_type == "page" && slug.current == $slug][0]{
-  _id,
-  title,
-  slug,
-  "seo": {
-    "title": coalesce(seo.title, title, ""),
-    "description": coalesce(seo.description,  ""),
-    "image": seo.image,
-    "noIndex": seo.noIndex == true
-  },
-  content,
-  category->{_id, title, slug},
-  tags[]->{_id, title, slug},
-  publishedAt,
-  updatedAt
+    _id,
+    title,
+    slug,
+    "seo": {
+      "title": coalesce(seo.title, title, ""),
+      "description": coalesce(seo.description,  ""),
+      "image": seo.image,
+      "noIndex": seo.noIndex == true
+    },
+    content,
+    category->{_id, title, slug},
+    tags[]->{_id, title, slug},
+    publishedAt,
+    updatedAt
 }`)
+
+export const PAGE_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "page" && slug.current == $wiki && category->slug.current == $category][0]{
+    _id,
+    title,
+    slug,
+    "seo": {
+      "title": coalesce(seo.title, title, ""),
+      "description": coalesce(seo.description,  ""),
+      "image": seo.image,
+      "noIndex": seo.noIndex == true
+    },
+    content,
+    category->{_id, title, slug},
+    tags[]->{_id, title, slug},
+    publishedAt,
+    updatedAt
+  }
+`)
 
 export const PAGES_SLUGS_QUERY = defineQuery(`*[_type == "page" && defined(slug.current)]{
   title,
@@ -72,6 +91,20 @@ export const CATEGORIES_QUERY = defineQuery(`
     name,
     "slug": slug.current,
     description
+  }
+`)
+
+export const CATEGORY_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "category"  && slug.current == $slug][0]{
+    _id,
+    name,
+    "slug": slug.current,
+    description,
+    "pages": *[_type == "page" && references(^._id)]{
+    _id,
+    title,
+    "slug": slug.current
+  }
   }
 `)
 

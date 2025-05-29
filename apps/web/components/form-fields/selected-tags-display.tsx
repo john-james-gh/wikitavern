@@ -17,10 +17,10 @@ export function SelectedTagsDisplay({form, tags}: SelectedTagsDisplayProps) {
   return (
     <p className="flex flex-wrap gap-2 items-center text-sm font-medium">
       <span>All Selected Tags:</span>
-      {selectedTags.length || requestedTags.length ? null : (
+      {selectedTags?.length || requestedTags?.length ? null : (
         <span className="text-muted-foreground py-0.5">None</span>
       )}
-      {selectedTags.map((tag) => (
+      {selectedTags?.map((tag) => (
         <span
           key={tag}
           className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 flex items-center gap-1"
@@ -41,7 +41,7 @@ export function SelectedTagsDisplay({form, tags}: SelectedTagsDisplayProps) {
           </button>
         </span>
       ))}
-      {requestedTags.map((tag) => (
+      {requestedTags?.map((tag) => (
         <span
           key={tag}
           className="px-2.5 py-0.5 rounded-full bg-green-300 text-green-800 dark:bg-green-900 dark:text-green-200 flex items-center gap-1"
