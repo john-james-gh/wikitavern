@@ -9,7 +9,7 @@
     "dev": "next dev --turbopack",
     "lint": "next lint",
     "start": "next start",
-    "test": "jest",
+    "test": "jest --coverage",
     "test-watch": "jest --watch",
     "typecheck": "tsc --noEmit",
     "typegen": "sanity typegen generate"

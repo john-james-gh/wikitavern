@@ -2,9 +2,8 @@ import type {RawQuerylessQueryResponse} from "next-sanity"
 import {renderToString} from "react-dom/server"
 import {describe, expect, it, vi} from "vitest"
 
+import Page, {generateMetadata} from "@/app/page"
 import {client} from "@/lib/sanity/client"
-
-import Page, {generateMetadata} from "./page"
 
 vi.mock("@/lib/sanity/client", () => ({
   client: {fetch: vi.fn()},
