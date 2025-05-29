@@ -15,6 +15,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@portabletext/block-tools": "^1.1.21",
+    "@portabletext/to-html": "^2.0.14",
     "@sanity/block-content-to-markdown": "^1.0.0",
     "@sanity/client": "^7.2.1",
     "@sanity/image-url": "^1.1.0",
@@ -22,6 +23,9 @@
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
     "@tanstack/react-table": "^8.21.3",
+    "@tiptap/pm": "^2.12.0",
+    "@tiptap/react": "^2.12.0",
+    "@tiptap/starter-kit": "^2.12.0",
     "@uiw/react-md-editor": "^4.0.6",
     "@workspace/cms-schema": "workspace:*",
     "@workspace/nextry": "workspace:*",
